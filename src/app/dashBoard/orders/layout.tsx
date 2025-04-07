@@ -3,23 +3,27 @@ import { dashboardLocalization } from '@/localization/localization'
 import { LayoutProps } from '@/interfaces/interface'
 import Image from 'next/image'
 import SidBarDashboard from '@/components/sideBarDashBoard/sidBarDashboard'
+import logo from '@/assets/logo.png'
 
-export default function DashboardLayout({ children }:LayoutProps) {
+export default function DashboardLayout({ children }: LayoutProps) {
     const { header } = dashboardLocalization
     return (
-        <div className='bg-[#FEFAE0]'>
-            <SidBarDashboard/>
-            
-            <div className='bg-[#936639] text-[#C2C5AA] text-2xl flex flex-row-reverse p-6 justify-between  '>
-                <p>{header.welcome}</p>
-                <Image src="/assets/logo.png"
+        <div className='bg-[#FEFAE0] flex flex-col'>
+            <div className='bg-[#936639] flex p-6 justify-between  '>
+                <p className='text-4xl font-bold text-[#C2C5AA]'>{header.welcome}</p>
+                <Image src={logo.src}
                     alt="logo"
-                    width={50}
-                    height={50}
+                    width={150}
+                    height={200}
                     className="ml-4" />
             </div>
+            <div className='flex'>
+                <SidBarDashboard />
+                <main className="flex-grow">{children}</main>
 
-            <main className="flex-grow">{children}</main>
+            </div>
+
+
         </div>
     )
 }

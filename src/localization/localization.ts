@@ -24,6 +24,8 @@ export const dashboardLocalization = {
   sidBar: {
     order: "سفارش ها",
     products: "کالاها",
+    price:"قیمت و موجودی کالا",
+    exit:"خروج از حساب کاربری",
   },
   loginPage: {
     emailPlaceholder: "tinankh@gmail.com",
