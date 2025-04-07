@@ -17,14 +17,21 @@ export const pageLevelLocalization = {
   },
 };
 
-export const dashboardLocalization={
-  header:{
-    welcome:"خوش آمدید"
-    
+export const dashboardLocalization = {
+  header: {
+    welcome: "خوش آمدید",
   },
-  sidBar:{
-order:"سفارش ها",
-products:"کالاها",
-
-  }
-}
+  sidBar: {
+    order: "سفارش ها",
+    products: "کالاها",
+  },
+  loginPage: {
+    emailPlaceholder: "tinankh@gmail.com",
+    passwordPlaceholder: "12345678",
+    emailLabel: "ایمیل:",
+    passwordLabel: "رمزعبور:",
+    buttonLabel: "ورود",
+    welcome: "به بوکتین خوش آمدید",
+    login: "به اکانت خود وارد شوید",
+  },
+};

@@ -8,7 +8,7 @@ export default function Footer() {
     const { footer } = pageLevelLocalization
     return (
         <div className='bg-[#606C38] text-white p-4 justify-between flex-row-reverse items-baseline '>
-            <div className=' rounded-2xl border border-[6px] border-[#ffff] border-dotted'>
+            <div className='text-xl rounded-2xl border border-[6px] border-[#ffff] border-dotted'>
                 <div className='m-8 text-right'>
                     <span>
                         <p>
@@ -33,7 +33,7 @@ export default function Footer() {
                 <div className='m-8 flex justify-between flex-row-reverse items-baseline'>
                     <div className='flex flex-col gap-4 justify-center items-end'>
                         <p>{footer.address}</p>
-                        <p>{footer.number}</p>
+                        <p className='text-2xl'>{footer.number}</p>
                     </div>
                     <div className='flex gap-4'>
                         <GrInstagram className='text-2xl cursor-pointer' />
