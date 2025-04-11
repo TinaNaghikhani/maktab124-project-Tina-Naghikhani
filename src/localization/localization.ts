@@ -24,8 +24,8 @@ export const dashboardLocalization = {
   sidBar: {
     order: "سفارش ها",
     products: "کالاها",
-    price:"قیمت و موجودی کالا",
-    exit:"خروج از حساب کاربری",
+    price: "قیمت و موجودی کالا",
+    exit: "خروج از حساب کاربری",
   },
   loginPage: {
     emailPlaceholder: "tinankh@gmail.com",
@@ -35,5 +35,26 @@ export const dashboardLocalization = {
     buttonLabel: "ورود",
     welcome: "به بوکتین خوش آمدید",
     login: "به اکانت خود وارد شوید",
+    errorRequiredEmailInput: "ایمیل را وارد کنید",
+    errorEmailInput: "ایمیل وارد شده نامعتبر است ",
+    errorRequiredPaaswordInput: "رمز عبور را وارد کنید",
+    passwordError: "رمز عبور باید حداقل 8 رقم باشد",
+  },
+  proTabel: {
+    image: "عکس محصول",
+    name: "نام محصول",
+    category: "دسته بندی",
+    addPro: "اضافه کردن محصول",
+  },
+  invenTabel: {
+    price: "قیمت",
+    product: "کالا",
+    inventory: "موجودی",
+    save: "ذخیره",
+  },
+  orderTabel: {
+    userName: "نام کاربر",
+    price: "مبلغ پرداختی",
+    time: "زمان ثبت سفارش",
   },
 };

@@ -14,19 +14,19 @@ export default function SidBar() {
     <aside className='h-screen w-[100px] hover:w-1/4  transition-all ease-in duration-300 group bg-[#936639] flex flex-col gap-2 py-4 px-5 justify-between max-sm:hidden'>
       <div className='sticky top-0 right-0'>
         <ul>
-          <Link href={'/dashBoard/products'}>
+          <Link href={'/dashboard/products'}>
             <li className="flex items-center justify-between w-full gap-3 px-8 py-2 text-[#C2C5AA] text-2xl font-bold cursor-pointer hover:bg-[#FEFAE0]">
               <p className="hidden text-xl transition-all duration-300 ease-in group-hover:block">{sidBar.products}</p>
               <AiOutlineProduct />
             </li>
           </Link>
-          <Link href={'/dashBoard/inventory'}>
+          <Link href={'/dashboard/inventory'}>
             <li className="flex items-center justify-between w-full gap-3 px-8 py-2 text-[#C2C5AA] text-2xl font-bold cursor-pointer hover:bg-[#FEFAE0]">
               <p className="hidden text-xl transition-all duration-300 ease-in group-hover:block">{sidBar.price}</p>
               <IoMdPricetags />
             </li>
           </Link>
-          <Link href={'/dashBoard/orders'}>
+          <Link href={'/dashboard/orders'}>
             <li className="flex items-center justify-between w-full gap-3 px-8 py-2 text-[#C2C5AA] text-2xl font-bold cursor-pointer hover:bg-[#FEFAE0]">
               <p className="hidden text-xl transition-all duration-300 ease-in group-hover:block">{sidBar.order}</p>
               <BsFillBasketFill />
