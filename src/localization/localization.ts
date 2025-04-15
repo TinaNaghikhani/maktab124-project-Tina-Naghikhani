@@ -57,4 +57,18 @@ export const dashboardLocalization = {
     price: "مبلغ پرداختی",
     time: "زمان ثبت سفارش",
   },
+  addModal:{
+    photo:"عکس محصول",
+    photoLabel:"عکس:",
+    uploadBtn:"آپلود",
+    namePlaceHolder:"طاعون",
+    nameLabel:"نام محصول:",
+    addBtn:"اضافه کردن",
+    category1:"شعر",
+    category2:"ادبیات کلاسیک",
+    category3:"فانتزی",
+    category4:"رمان های خارجی",
+    category5:"داستان کوتاه",
+    category6:"کودک و نوجوان",
+  }
 };

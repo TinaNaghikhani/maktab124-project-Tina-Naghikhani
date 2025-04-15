@@ -3,6 +3,7 @@ import { dashboardLocalization } from '@/localization/localization';
 import { FcFullTrash } from "react-icons/fc";
 import { FcSurvey } from "react-icons/fc";
 import Button from '@/components/base/button/page';
+import AddModal from '@/components/addModalProductP/addModal';
 
 export default function page() {
   const { proTabel } = dashboardLocalization
@@ -56,8 +57,8 @@ export default function page() {
           </th>
         </tr>       
       </table>
-            <Button type={'button'} className={'bg-[#414833] text-white rounded-full p-2 text-2xl font-bold'} label={proTabel.addPro} />
-      
+            <Button type={'button'} className={'bg-[#414833] text-white rounded-full p-2 text-2xl font-bold cursor-pointer'} label={proTabel.addPro} />
+      <AddModal/>
     </div>
   )
 }

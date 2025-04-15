@@ -30,7 +30,7 @@ export default function page() {
           <th>5 عدد</th>
         </tr>
       </table>
-      <Button type={'button'} className={'bg-[#414833] text-white rounded-full p-2 text-2xl font-bold'} label={invenTabel.save} />
+      <Button type={'button'} className={'bg-[#414833] text-white rounded-full p-2 text-2xl font-bold cursor-pointer'} label={invenTabel.save} />
     </div>
   )
 }

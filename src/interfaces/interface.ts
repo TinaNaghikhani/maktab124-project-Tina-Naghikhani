@@ -27,3 +27,11 @@ export interface dashboard{
 export interface LayoutProps {
   children: ReactNode; 
 }
+export interface products{
+  image:string;
+  name:string;
+  category:string;
+  price:number;
+  id:number;
+  count:number;
+}
