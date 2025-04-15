@@ -10,7 +10,7 @@ const combinedReducer = combineReducers({
 })
 // تنظیمات redux-persist
 const persistConfig = {
-    key: "root", // کلید برای ذخیره‌سازی در localStorage
+    key: "booktin", // کلید برای ذخیره‌سازی در localStorage
     storage, // استفاده از localStorage
     whitelist: ["products"], // فقط بخش products ذخیره شود
 };

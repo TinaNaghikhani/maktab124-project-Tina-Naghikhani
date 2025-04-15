@@ -2,6 +2,7 @@ import { products } from "@/interfaces/interface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface productState {
+    map: ReactNode;
     products: products[];
 }
 const initialState: productState = {

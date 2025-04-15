@@ -11,7 +11,7 @@ import Link from 'next/link';
 export default function SidBar() {
   const { sidBar } = dashboardLocalization
   return (
-    <aside className='h-screen w-[100px] hover:w-1/4  transition-all ease-in duration-300 group bg-[#936639] flex flex-col gap-2 py-4 px-5 justify-between max-sm:hidden'>
+    <aside className='h-screen w-[100px] hover:w-1/4  transition-all ease-in duration-300 group bg-[#936639] flex flex-col items-around gap-2 py-4 px-5 justify-between max-sm:hidden'>
       <div className='sticky top-0 right-0'>
         <ul>
           <Link href={'/dashboard/products'}>
