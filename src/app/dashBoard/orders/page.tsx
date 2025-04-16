@@ -1,7 +1,22 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import { dashboardLocalization } from '@/localization/localization'
+import { getOrder } from '@/services/getOrder/getOrder';
 export default function () {
   const { orderTabel } = dashboardLocalization
+    const [orders, setorders] = useState<any[]>([]);
+    useEffect(() => {
+      const fetchorders = async () => {
+        try {
+          const data = await getOrder();
+          setorders(data);
+        } catch (error) {
+          console.error('Error fetching orders:', error);
+        }
+      };
+  
+      fetchorders();
+    }, []);
   return (
     <div className='flex flex-col gap-10 items-center m-8'>
       <table className='w-5/6 text-center text-xl p-2 bg-[#A4AC86] rounded-xl text-white shadow-xl'>
@@ -13,30 +28,17 @@ export default function () {
             <th></th>
           </tr>
         </thead>
-        <tr className='border hover:bg-[#C2C5AA]'>
-          <th>مریم حسینی</th>
-          <th>11/11/1403</th>
-          <th>3.000.000 تومن</th>
-          <th>وضعیت سفارش</th>
-        </tr>
-        <tr className='border hover:bg-[#C2C5AA]'>
-          <th>مریم حسینی</th>
-          <th>11/11/1403</th>
-          <th>3.000.000 تومن</th>
-          <th>وضعیت سفارش</th>
-        </tr>
-        <tr className='border hover:bg-[#C2C5AA]'>
-          <th>مریم حسینی</th>
-          <th>11/11/1403</th>
-          <th>3.000.000 تومن</th>
-          <th>وضعیت سفارش</th>
-        </tr>
-        <tr className='border hover:bg-[#C2C5AA]'>
-          <th>مریم حسینی</th>
-          <th>11/11/1403</th>
-          <th>3.000.000 تومن</th>
-          <th>وضعیت سفارش</th>
-        </tr>
+        <tbody>
+          {orders.map((order) => (
+          <tr key={order.id}className='border hover:bg-[#C2C5AA]'>
+            <th>{order.firstName}</th>
+            <th>{order.time}</th>
+            <th>{order.price} تومن</th>
+            <th>{order.case}</th>
+          </tr>
+          ))}
+        </tbody>
+
       </table>
     </div>
   )

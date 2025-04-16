@@ -1,26 +1,20 @@
 import { products } from "@/interfaces/interface";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface productState {
-    map: ReactNode;
-    products: products[];
-}
-const initialState: productState = {
-    products: [],
+const initialState:products[] = [];
 
-}
 const productSlice = createSlice({
     name: "products",
     initialState,
     reducers: {
         setProducts: (state, action: PayloadAction<products[]>) => {
-            state.products = action.payload;
+            return action.payload;
         },
         deleteProducts: (state, action: PayloadAction<products[]>) => {
-            state.products = state.products.filter((products) => { products.id !== action.payload })
+            return state.filter((product) => product.id !== action.payload)
         },
         addProducts: (state, action) => {
-            return action.payload;
+            state.push(action.payload);
         },
         updateProducts: (state, action) => {
             //@ts-ignore

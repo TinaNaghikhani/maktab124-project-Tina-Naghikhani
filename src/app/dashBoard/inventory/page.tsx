@@ -1,8 +1,24 @@
-import React from 'react'
+'use client'
+import React, { useEffect, useState } from 'react'
 import { dashboardLocalization } from '@/localization/localization'
 import Button from '@/components/base/button/page'
+import { getProduct } from '@/services/getProduct/page';
+
 export default function page() {
   const { invenTabel } = dashboardLocalization
+  const [products, setProducts] = useState<any[]>([]);
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getProduct();
+        setProducts(data);
+      } catch (error) {
+        console.error('Error fetching products:', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
   return (
     <div className='flex flex-col gap-10 items-center m-8'>
       <table className='w-5/6 text-center text-xl p-2 bg-[#A4AC86] rounded-xl text-white shadow-xl'>
@@ -14,21 +30,17 @@ export default function page() {
           </tr>
 
         </thead>
-        <tr className='border hover:bg-[#C2C5AA]'>
-          <th>یاغی شن ها</th>
-          <th>200تومن</th>
-          <th>30 عدد</th>
-        </tr>
-        <tr className='border hover:bg-[#C2C5AA]'>
-          <th>تاج دوقلوها</th>
-          <th>500 تومن</th>
-          <th>10 عدد</th>
-        </tr>
-        <tr className='border hover:bg-[#C2C5AA]'>
-          <th>ناتوان</th>
-          <th>800 تومن</th>
-          <th>5 عدد</th>
-        </tr>
+        <tbody>
+          {products.map((product) => (
+            <tr key={product.id} className="border hover:bg-[#C2C5AA]">
+              <td>{product.name}</td>
+              <td>{product.price} تومن</td>
+              <td>{product.count} عدد</td>
+            </tr>
+          ))}
+
+        </tbody>
+
       </table>
       <Button type={'button'} className={'bg-[#414833] text-white rounded-full p-2 text-2xl font-bold cursor-pointer'} label={invenTabel.save} />
     </div>

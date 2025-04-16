@@ -11,10 +11,10 @@ import { setProducts } from '@/redux/reducers/products';
 import { AppDispatch, RootState } from '@/redux/store';
 
 export default function page() {
-  const BASE_URL = "http://api.alikooshesh.ir:3000"
   const { proTabel } = dashboardLocalization
-  const products = useSelector((state: RootState) => state.products.products);
+  const products = useSelector((state: RootState) => state.products);
   const dispatch = useDispatch<AppDispatch>()
+  const BASE_URL = "http://api.alikooshesh.ir:3000";
   useEffect(() => {
     getProduct().then((res) => dispatch(setProducts(res)))
   }, []);
