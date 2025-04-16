@@ -12,7 +12,7 @@ export default function DashboardLayout({ children }: LayoutProps) {
     const { header } = dashboardLocalization
     return (
         <Provider store={store}>
-            <div className='bg-[#FEFAE0] flex flex-col overflow-hidden'>
+            <div className='bg-[#FEFAE0] flex flex-col'>
                 <div className='w-full bg-[#936639] flex p-6 justify-between  '>
                     <p className='text-4xl font-bold text-[#C2C5AA]'>{header.welcome}</p>
                     <Image src={logo.src}

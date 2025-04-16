@@ -11,6 +11,7 @@ import { setProducts } from '@/redux/reducers/products';
 import { AppDispatch, RootState } from '@/redux/store';
 
 export default function page() {
+  const BASE_URL = "http://api.alikooshesh.ir:3000"
   const { proTabel } = dashboardLocalization
   const products = useSelector((state: RootState) => state.products.products);
   const dispatch = useDispatch<AppDispatch>()
@@ -22,15 +23,18 @@ export default function page() {
     <div className='flex flex-col gap-10 items-center m-8'>
       <table className='w-5/6 text-center text-xl p-2 bg-[#A4AC86] rounded-xl text-white shadow-xl'>
         <thead className='p-2 border'>
-          <th>{proTabel.image}</th>
-          <th>{proTabel.name}</th>
-          <th>{proTabel.category}</th>
-          <th></th>
+          <tr>
+            <th>{proTabel.image}</th>
+            <th>{proTabel.name}</th>
+            <th>{proTabel.category}</th>
+            <th></th>
+          </tr>
+
         </thead>
         <tbody>
           {products.map((item: any) => (
             <tr key={item.id} className='border hover:bg-[#C2C5AA]'>
-              <th className='w-40'>{item.image}</th>
+              <th className='w-40'>{`${BASE_URL}item.image`}</th>
               <th>{item.name}</th>
               <th>{item.category}</th>
               <th className='p-2 w-40'><span className='flex gap-2 justify-around'><FcFullTrash className='cursor-pointer' /> <FcSurvey className='cursor-pointer' /></span>
