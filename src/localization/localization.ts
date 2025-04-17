@@ -15,6 +15,21 @@ export const pageLevelLocalization = {
     number: "021-4443258",
     text: "...بیشتر",
   },
+  loginPage: {
+    welcome: "به بوکتین خوش آمدید!",
+    login: "به اکانت خود وارد شوید",
+    passwordLabel: "رمزعبور :",
+    emailLabel: "ایمیل :",
+    alredyHaveAnAccount: "قبلا ثبت نام نکردید؟",
+    sinUp: "ثبت نام کنید",
+    errorRequiredEmailInput: "ایمیل را وارد کنید",
+    errorRequiredPaaswordInput: "رمز عبور را وارد کنید",
+    errorEmailInput: "ایمیل وارد شده نامعتبر است ",
+    errorPasswordInput: "رمزعبور وارد شده نامعتبر است ",
+    loginBtn: "ورود",
+    emailError: "ایمیل خودرا وارد کنید",
+    passwordError: "رمز عبور خودرا وارد کنید",
+  },
 };
 
 export const dashboardLocalization={
