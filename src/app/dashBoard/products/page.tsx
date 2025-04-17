@@ -38,19 +38,19 @@ export default function page() {
       <table className='w-5/6 text-center text-xl p-2 bg-[#A4AC86] rounded-xl text-white shadow-xl'>
         <thead className='p-2 border'>
           <tr>
-            <th>{proTabel.image}</th>
-            <th>{proTabel.name}</th>
-            <th>{proTabel.category}</th>
-            <th></th>
+            <th className='w-40'>{proTabel.image}</th>
+            <th className='w-[200px]'>{proTabel.name}</th>
+            <th className='w-[150px]'>{proTabel.category}</th>
+            <th className='w-40'></th>
           </tr>
 
         </thead>
         <tbody>
           {currentProducts.map((item: any) => (
             <tr key={item.id} className='border hover:bg-[#C2C5AA]'>
-              <th className='w-40'>{`${BASE_URL}${item.image}`}</th>
-              <th>{item.name}</th>
-              <th>{item.category}</th>
+              <th className='w-40'>{item.image}</th>
+              <th className='w-[200px]'>{item.name}</th>
+              <th className='w-[150px]'>{item.category}</th>
               <th className='p-2 w-40'>
                 <span className='flex gap-2 justify-around'>
                   <FcFullTrash className='cursor-pointer' />
