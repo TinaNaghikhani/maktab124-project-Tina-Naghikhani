@@ -45,9 +45,9 @@ export default function page() {
         <tbody>
           {currentProducts.map((product) => (
             <tr key={product.id} className="border hover:bg-[#C2C5AA]">
-              <th className='w-[150px] p-2'>{product.name}</th>
-              <th className='w-[150px] p-2'>{product.price} تومن</th>
-              <th className='w-[150px] p-2'>{product.count} عدد</th>
+              <td className='w-[150px] p-2'>{product.name}</td>
+              <td className='w-[150px] p-2'>{product.price} تومن</td>
+              <td className='w-[150px] p-2'>{product.count} عدد</td>
             </tr>
           ))}
         </tbody>
