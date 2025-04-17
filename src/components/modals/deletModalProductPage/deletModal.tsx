@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function page() {
+export default function DeletModal() {
   return (
     <div>
-      <p>login dashboard</p>
+      
     </div>
   )
 }

@@ -10,20 +10,28 @@ export interface InputInterface {
   id?: string;
   name?: string;
   error?: string;
-  label:string;
+  label: string;
 }
 
 export interface ButtonInterface {
   type: "submit" | "button" | undefined;
-  onClick?: () => void;
+  onClick?: () => void | undefined;
   className: string;
-  label: string;
+  label?: string | unknown;
   disable?: boolean;
 }
 
-export interface dashboard{
-  children:ReactNode
+export interface dashboard {
+  children: ReactNode;
 }
 export interface LayoutProps {
-  children: ReactNode; 
+  children: ReactNode;
+}
+export interface products {
+  image: string;
+  name: string;
+  category: string;
+  price: number;
+  id: number | string;
+  count: number;
 }

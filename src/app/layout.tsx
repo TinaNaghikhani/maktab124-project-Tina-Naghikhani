@@ -1,25 +1,10 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
-import { Playfair_Display } from 'next/font/google';
-
 import "./globals.css";
-import Header from "@/components/shared/header/page";
-import Footer from "@/components/shared/footer/page";
+import localFont from 'next/font/local';
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
-
-const playfair = Playfair_Display({
-  subsets: ['latin'], // زیرمجموعه‌های زبانی (مثل انگلیسی)
-  weight: ['400', '700'], // وزن‌های مختلف فونت (Regular و Bold)
-  variable: '--font-playfair', // متغیر CSS برای استفاده در کل پروژه
+const BZiba = localFont({
+  src: '../../public/font/B\ Ziba_0.ttf', 
+  display: 'swap', 
 });
 
 export const metadata: Metadata = {
@@ -35,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${playfair.variable} font-sans antialiased flex flex-col min-h-screen`} style={{ background: '#FEFAE0' }}
+        className={`${BZiba.className} font-sans antialiased flex flex-col min-h-screen`} style={{ background: '#FEFAE0' }}
       >
         <main className="flex-grow"> 
         {children}

@@ -32,14 +32,84 @@ export const pageLevelLocalization = {
   },
 };
 
-export const dashboardLocalization={
-  header:{
-    welcome:"خوش آمدید"
-    
+export const dashboardLocalization = {
+  header: {
+    welcome: "خوش آمدید",
   },
-  sidBar:{
-order:"سفارش ها",
-products:"کالاها",
-
-  }
-}
+  sidBar: {
+    dashboar: "داشبورد",
+    order: "سفارش ها",
+    products: "کالاها",
+    price: "قیمت و موجودی کالا",
+    exit: "خروج از حساب کاربری",
+  },
+  loginPage: {
+    emailPlaceholder: "tinankh@gmail.com",
+    passwordPlaceholder: "12345678",
+    emailLabel: "ایمیل:",
+    passwordLabel: "رمزعبور:",
+    buttonLabel: "ورود",
+    welcome: "به بوکتین خوش آمدید",
+    login: "به اکانت خود وارد شوید",
+    errorRequiredEmailInput: "ایمیل را وارد کنید",
+    errorEmailInput: "ایمیل وارد شده نامعتبر است ",
+    errorRequiredPaaswordInput: "رمز عبور را وارد کنید",
+    passwordError: "رمز عبور باید حداقل 8 رقم باشد",
+  },
+  proTabel: {
+    image: "عکس محصول",
+    name: "نام محصول",
+    category: "دسته بندی",
+    addPro: "اضافه کردن محصول",
+  },
+  invenTabel: {
+    price: "قیمت",
+    product: "کالا",
+    inventory: "موجودی",
+    save: "ذخیره",
+  },
+  orderTabel: {
+    userName: "نام کاربر",
+    price: "مبلغ پرداختی",
+    time: "زمان ثبت سفارش",
+  },
+  addModal: {
+    photo: "عکس محصول",
+    photoLabel: "عکس:",
+    uploadBtn: "آپلود",
+    namePlaceHolder: "طاعون",
+    nameLabel: "نام محصول:",
+    addBtn: "اضافه کردن",
+    category1: "شعر",
+    category2: "ادبیات کلاسیک",
+    category3: "فانتزی",
+    category4: "رمان های خارجی",
+    category5: "داستان کوتاه",
+    category6: "کودک و نوجوان",
+  },
+  charts: {
+    SaleChartTitle: "مقایسه فروش سال اتی و سال گذشته",
+    SaleChartLabels: {
+      farvardin: "فروردین",
+      ordibehesht: "اردیبهشت",
+      khordad: "خرداد",
+      tir: "تیر",
+      mordad: "مرداد",
+      shahrivar: "شهریور",
+      mehr: "مهر",
+      aban: "آبان",
+      azar: "آذر",
+      Dy: "دی",
+      Bahman: "بهمن",
+      Esfand: "اسفند",
+    },
+    bestSellerChartTitle: "درصد فروش بر اساس دسته بندی",
+    bestSellerChartLabels: {
+      literary: "ادبی",
+      fantasy: "فانتزی",
+      novel: "رمان",
+      poet:"ادبیات کلاسیک",
+      others: "سایر",
+    },
+  },
+};
