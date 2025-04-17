@@ -22,6 +22,7 @@ export const dashboardLocalization = {
     welcome: "خوش آمدید",
   },
   sidBar: {
+    dashboar:"داشبورد",
     order: "سفارش ها",
     products: "کالاها",
     price: "قیمت و موجودی کالا",
