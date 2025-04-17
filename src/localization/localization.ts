@@ -30,6 +30,20 @@ export const pageLevelLocalization = {
     emailError: "ایمیل خودرا وارد کنید",
     passwordError: "رمز عبور خودرا وارد کنید",
   },
+  singUpPageLoc : {
+  welcome: "به آبتیکا خوش آمدید!",
+  singUp: "اکانت خود را بسازید",
+  passwordLabel: "رمزعبور :",
+  passwordLabel2:"تکرار رمز عبور",
+  emailLabel: "ایمیل :",
+  alredyHaveAnAccount: "قبلا ثبت نام کردید؟",
+  login: "وارد شوید",
+  errorRequiredEmailInput: "ایمیل را وارد کنید",
+  errorRequiredPaaswordInput: "رمز عبور را وارد کنید",
+  errorEmailInput: "ایمیل وارد شده نامعتبر است ",
+  singUpBtn: "ثبت نام",
+  passwordError: "رمز عبور باید حداقل 8 رقم باشد",
+}
 };
 
 export const dashboardLocalization = {
