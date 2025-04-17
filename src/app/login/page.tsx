@@ -5,7 +5,7 @@ import { FormEvent, useState } from 'react'
 import { pageLevelLocalization } from '@/localization/localization'
 import Button from '@/components/base/button/page'
 import { useRouter } from 'next/navigation';
-// import Loader from '@/components/shared/loader/loader';
+import Loader from '@/components/shared/loader/loader';
 import axios from 'axios'
 
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -34,7 +34,7 @@ function LoginPage() {
     }
     if (emailRegex.test(email)) {
       try {
-        const API_KEY = "abtica-124-DAKaRdLcHsftmPgErnIbH8hUf0HMSyyLDXk5Hapfm8KOqGCz1vJzYBrpIICPNGAVYJaLaMipExfL2xtC3c5Sg6Y1IM6BIwwvos23ai0sMK6OgRlpo9fCa"
+        const API_KEY = ""
         const BASE_URL = "http://api.alikooshesh.ir:3000"
         setLoader(true);
         const response = await axios.post(`${BASE_URL}/api/users/login`, {
@@ -60,11 +60,11 @@ function LoginPage() {
   }
   return (
     <div className='bg-stone-200 h-screen flex justify-center items-center'>
-      {/* {loader && (
+      {loader && (
         <div className="bg-gray-600 h-screen w-full absolute inset-0 flex items-center justify-center bg-opacity-50 z-50">
           <Loader />
         </div>
-      )} */}
+      )}
       <div className='md:h-[650px] sm:h-[400px] p-6 flex flex-col gap-8 items-center justify-center bg-stone-800 md:w-1/4 text-white rounded-xl sm:w-1/2'>
         <p className='md:text-2xl font-bold sm:text-xl'>{loginPage.welcome}</p>
         <p className='md:text-xl font-bold sm:text-lg'>{loginPage.login}</p>
