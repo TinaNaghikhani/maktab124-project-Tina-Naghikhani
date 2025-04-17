@@ -36,18 +36,18 @@ export default function page() {
       <table className='w-5/6 text-center text-xl p-2 bg-[#A4AC86] rounded-xl text-white shadow-xl'>
         <thead className='p-2 border'>
           <tr>
-            <th className='w-[150px]'>{invenTabel.product}</th>
-            <th className='w-[150px]'>{invenTabel.price}</th>
-            <th className='w-[150px]'>{invenTabel.inventory}</th>
+            <th className='w-[150px] p-2'>{invenTabel.product}</th>
+            <th className='w-[150px] p-2'>{invenTabel.price}</th>
+            <th className='w-[150px] p-2'>{invenTabel.inventory}</th>
           </tr>
 
         </thead>
         <tbody>
           {currentProducts.map((product) => (
             <tr key={product.id} className="border hover:bg-[#C2C5AA]">
-              <th className='w-[150px]'>{product.name}</th>
-              <th className='w-[150px]'>{product.price} تومن</th>
-              <th className='w-[150px]'>{product.count} عدد</th>
+              <th className='w-[150px] p-2'>{product.name}</th>
+              <th className='w-[150px] p-2'>{product.price} تومن</th>
+              <th className='w-[150px] p-2'>{product.count} عدد</th>
             </tr>
           ))}
         </tbody>

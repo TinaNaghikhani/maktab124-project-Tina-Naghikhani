@@ -1,12 +1,12 @@
 import React from 'react'
-import Input from '../base/input/page'
-import Button from '../base/button/page'
+import Input from '../../base/input/page'
+import Button from '../../base/button/page'
 import { dashboardLocalization } from '@/localization/localization'
 
 export default function AddModal() {
   const { addModal } = dashboardLocalization
   return (
-    
+
     <div>
       <div>
         <Input type={'image'} placeholder={addModal.photo} className={''} label={addModal.photoLabel} />

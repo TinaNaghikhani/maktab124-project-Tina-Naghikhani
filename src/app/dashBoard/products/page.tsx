@@ -4,7 +4,7 @@ import { dashboardLocalization } from '@/localization/localization';
 import { FcFullTrash } from "react-icons/fc";
 import { FcSurvey } from "react-icons/fc";
 import Button from '@/components/base/button/page';
-import AddModal from '@/components/addModalProductP/addModal';
+import AddModal from '@/components/modals/addModalProductP/addModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '@/services/getProduct/page';
 import { setProducts } from '@/redux/reducers/products';
@@ -21,7 +21,7 @@ export default function page() {
   console.log("Products:", products);
 
   const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 8;
+  const productsPerPage = 5;
 
   // محاسبه محصولاتی که باید در صفحه فعلی نمایش داده شوند
   const indexOfLastProduct = currentPage * productsPerPage;
@@ -31,7 +31,7 @@ export default function page() {
   // تغییر صفحه
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
   return (
-    <div className='flex flex-col gap-10 items-center m-8'>
+    <div className='flex flex-col gap-4 items-center m-8'>
       <div className='flex justify-end'>
         <Button type={'button'} className={'bg-[#414833] text-white rounded-full p-2 text-2xl font-bold cursor-pointer'} label={proTabel.addPro} />
       </div>
@@ -45,21 +45,22 @@ export default function page() {
           </tr>
 
         </thead>
-        <tbody>
+        <tbody className=''>
           {currentProducts.map((item: any) => (
             <tr key={item.id} className='border hover:bg-[#C2C5AA]'>
-              <th className='w-40'>{item.image}</th>
-              <th className='w-[200px]'>{item.name}</th>
-              <th className='w-[150px]'>{item.category}</th>
-              <th className='p-2 w-40'>
-                <span className='flex gap-2 justify-around'>
+              <td className=' p-2 flex justify-center'><img src={`${BASE_URL}${item.image}`} alt={item.name} className='w-10'/></td>
+              <td className='w-[200px]'>{item.name}</td>
+              <td className='w-[150px]'>{item.category}</td>
+              <td className='p-2 w-40'>
+                <span className='flex gap-2 justify-center'>
                   <FcFullTrash className='cursor-pointer' />
                   <FcSurvey className='cursor-pointer' />
                 </span>
-              </th>
+              </td>
             </tr>
           ))}
         </tbody>
+
       </table>
       <div className='flex gap-4'>
         <button
