@@ -11,7 +11,7 @@ import axios from 'axios'
 const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
 function LoginPage() {
-  const { loginPage }=pageLevelLocalization;
+  const { loginPage } = pageLevelLocalization;
   const [loader, setLoader] = useState(false)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -59,28 +59,31 @@ function LoginPage() {
     };
   }
   return (
-    <div className='bg-stone-200 h-screen flex justify-center items-center'>
+    <div className='h-screen flex justify-center items-center'>
       {loader && (
         <div className="bg-gray-600 h-screen w-full absolute inset-0 flex items-center justify-center bg-opacity-50 z-50">
           <Loader />
         </div>
       )}
-      <div className='md:h-[650px] sm:h-[400px] p-6 flex flex-col gap-8 items-center justify-center bg-stone-800 md:w-1/4 text-white rounded-xl sm:w-1/2'>
-        <p className='md:text-2xl font-bold sm:text-xl'>{loginPage.welcome}</p>
-        <p className='md:text-xl font-bold sm:text-lg'>{loginPage.login}</p>
-        <form onSubmit={btnHandler} className='w-full p-2 py-4 flex flex-col gap-4 items-center justify-center'>
-          <div className='flex flex-col gap-2 w-full'>
-            <Input onChange={((e: any) => setEmail(e.target.value)) as unknown as () => void} placeholder='tina1234@gmail.com' type='text' className='w-full text-black mt-2 p-2 shadow-lg bg-white rounded-lg focus:' label={''} />
-            {isSubmit && emailError && <p className="text-xs text-red-500">{emailError}</p>}
-          </div>
-          <div className='flex flex-col gap-2 w-full'>
-            <Input onChange={((e: any) => setPassword(e.target.value)) as unknown as () => void} placeholder='123456789' type='password' className='w-full text-black mt-2 p-2 shadow-lg bg-white rounded-lg focus:' label={''} />
-            {isSubmit && passwordError && <p className="text-xs text-red-500">{passwordError}</p>}
-          </div>
-          <Button type={'submit'} className={''} label={''}>{loginPage.loginBtn}</Button>
-        </form>
-        <p>{loginPage.alredyHaveAnAccount}<button onClick={singUpBtnHandler} className='hover:cursor-pointer'>{loginPage.sinUp}</button></p>
+      <div className='bg-[#606C38] md:h-[650px] sm:h-[400px] p-6 md:w-1/4 text-white rounded-xl sm:w-1/2'>
+        <div className='p-2 border border-[6px] border-[#ffff] border-dotted w-full h-full flex flex-col justify-center items-center gap-4 rounded-xl '>
+          <p className='md:text-3xl font-bold sm:text-xl'>{loginPage.welcome}</p>
+          <p className='md:text-2xl font-bold sm:text-xl'>{loginPage.login}</p>
+          <form onSubmit={btnHandler} className='w-full p-2 py-4 flex flex-col gap-4 items-center justify-center'>
+            <div className='flex flex-col w-full'>
+              <Input onChange={((e: any) => setEmail(e.target.value)) as unknown as () => void} placeholder='tina1234@gmail.com' type='text' className={'bg-[#B6AD90] rounded-full p-2 text-[#414833] focus:outline-none'} label={loginPage.emailLabel} />
+              {isSubmit && emailError && <p className="text-xs text-red-500">{emailError}</p>}
+            </div>
+            <div className='flex flex-col w-full'>
+              <Input onChange={((e: any) => setPassword(e.target.value)) as unknown as () => void} placeholder='123456789' type='password' className={'bg-[#B6AD90] rounded-full p-2 text-[#414833] focus:outline-none'} label={loginPage.passwordLabel} />
+              {isSubmit && passwordError && <p className="text-xs text-red-500">{passwordError}</p>}
+            </div>
+            <Button type={'submit'} className={'bg-white rounded-full p-2 text-2xl font-bold text-black w-40 cursor-pointer'} label={loginPage.loginBtn}/>
+          </form>
+          <p>{loginPage.alredyHaveAnAccount}<button onClick={singUpBtnHandler} className='hover:cursor-pointer'>{loginPage.sinUp}</button></p>
+        </div>
       </div>
+
     </div>
   )
 }
