@@ -15,7 +15,7 @@ export interface InputInterface {
 
 export interface ButtonInterface {
   type: "submit" | "button" | undefined;
-  onClick?: () => void;
+  onClick?: () => void | undefined;
   className: string;
   label?: string | unknown;
   disable?: boolean;
