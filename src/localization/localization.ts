@@ -75,12 +75,19 @@ export const dashboardLocalization = {
     name: "نام محصول",
     category: "دسته بندی",
     addPro: "اضافه کردن محصول",
+    page: "صفحه",
+    next: "بعدی",
+    pre: "قبلی",
+    actions:"عملیات"
   },
   invenTabel: {
     price: "قیمت",
     product: "کالا",
     inventory: "موجودی",
     save: "ذخیره",
+    page: "صفحه",
+    next: "بعدی",
+    pre: "قبلی",
   },
   orderTabel: {
     userName: "نام کاربر",
@@ -122,7 +129,7 @@ export const dashboardLocalization = {
       literary: "ادبی",
       fantasy: "فانتزی",
       novel: "رمان",
-      poet:"ادبیات کلاسیک",
+      poet: "ادبیات کلاسیک",
       others: "سایر",
     },
   },
