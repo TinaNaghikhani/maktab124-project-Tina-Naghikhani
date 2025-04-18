@@ -41,7 +41,7 @@ export default function page() {
             <th className='w-40'>{proTabel.image}</th>
             <th className='w-[200px]'>{proTabel.name}</th>
             <th className='w-[150px]'>{proTabel.category}</th>
-            <th className='w-40'></th>
+            <th className='w-40'>{proTabel.actions}</th>
           </tr>
 
         </thead>
@@ -68,18 +68,17 @@ export default function page() {
           disabled={currentPage === 1}
           className='bg-[#414833] text-white rounded-full p-2 cursor-pointer disabled:bg-gray-500'
         >
-          Previous
+          {proTabel.pre}
         </button>
-        <span>Page {currentPage}</span>
+        <span>{proTabel.page} {currentPage}</span>
         <button
           onClick={() => paginate(currentPage + 1)}
           disabled={indexOfLastProduct >= products.length}
           className='bg-[#414833] text-white rounded-full p-2 cursor-pointer disabled:bg-gray-500'
         >
-          Next
+         {proTabel.next}
         </button>
       </div>
-      {/* <AddModal /> */}
     </div>
   )
 }

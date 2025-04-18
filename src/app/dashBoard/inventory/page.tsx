@@ -7,6 +7,13 @@ import { getProduct } from '@/services/getProduct/page';
 export default function page() {
   const { invenTabel } = dashboardLocalization
   const [products, setProducts] = useState<any[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 5;
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -19,16 +26,7 @@ export default function page() {
 
     fetchProducts();
   }, []);
-    const [currentPage, setCurrentPage] = useState(1);
-    const productsPerPage = 8;
-  
-    // محاسبه محصولاتی که باید در صفحه فعلی نمایش داده شوند
-    const indexOfLastProduct = currentPage * productsPerPage;
-    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-    const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
-  
-    // تغییر صفحه
-    const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   return (
     <div className='flex flex-col gap-10 items-center m-8'>
       <Button type={'button'} className={'bg-[#414833] text-white rounded-full p-2 text-2xl font-bold cursor-pointer'} label={invenTabel.save} />
@@ -58,15 +56,15 @@ export default function page() {
           disabled={currentPage === 1}
           className='bg-[#414833] text-white rounded-full p-2 cursor-pointer disabled:bg-gray-500'
         >
-          Previous
+          {invenTabel.pre}
         </button>
-        <span>Page {currentPage}</span>
+        <span>{invenTabel.page} {currentPage}</span>
         <button
           onClick={() => paginate(currentPage + 1)}
           disabled={indexOfLastProduct >= products.length}
           className='bg-[#414833] text-white rounded-full p-2 cursor-pointer disabled:bg-gray-500'
         >
-          Next
+          {invenTabel.next}
         </button>
       </div>
     </div>
