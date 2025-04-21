@@ -25,7 +25,7 @@ export default function Footer() {
                         </p>
                         <p>ما قراره یه دوست خیلی خاص براتون باشیم… یه دوستی که همیشه کنارتونه و هر وقت دوست دارید، یه کتاب عالی رو به دستتون می‌ده!
                             قول می‌دیم همیشه کنار شما باشیم و بهترین‌ها رو براتون انتخاب کنیم.</p>
-                        <span className='font-bold cursor-pointer'>{footer.text}</span>
+                        {/* <span className='font-bold cursor-pointer'>{footer.text}</span> */}
                     </span>
 
                 </div>

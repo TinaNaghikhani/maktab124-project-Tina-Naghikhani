@@ -49,7 +49,7 @@ export const dashboardLocalization = {
     page: "صفحه",
     next: "بعدی",
     pre: "قبلی",
-    actions:"عملیات"
+    actions: "عملیات",
   },
   invenTabel: {
     price: "قیمت",
@@ -78,6 +78,11 @@ export const dashboardLocalization = {
     category4: "رمان های خارجی",
     category5: "داستان کوتاه",
     category6: "کودک و نوجوان",
+  },
+  deletModal: {
+    text: "از حذف محصول اطمیان کامل دارید؟",
+    canceled:"انصراف",
+    accept:"تایید",
   },
   charts: {
     SaleChartTitle: "مقایسه فروش سال اتی و سال گذشته",
