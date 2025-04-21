@@ -81,8 +81,8 @@ export const dashboardLocalization = {
   },
   deletModal: {
     text: "از حذف محصول اطمیان کامل دارید؟",
-    canceled:"انصراف",
-    accept:"تایید",
+    canceled: "انصراف",
+    accept: "تایید",
   },
   charts: {
     SaleChartTitle: "مقایسه فروش سال اتی و سال گذشته",
