@@ -7,29 +7,36 @@ import Button from '@/components/base/button/page';
 import AddModal from '@/components/modals/addModalProductP/addModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '@/services/getProduct/page';
-import { setProducts } from '@/redux/reducers/products';
+import { deleteProducts, setProducts } from '@/redux/reducers/products';
 import { AppDispatch, RootState } from '@/redux/store';
+import DeletModal from '@/components/modals/deletModalProductPage/deletModal';
 
 export default function page() {
   const { proTabel } = dashboardLocalization
   const products = useSelector((state: RootState) => state.products);
   const dispatch = useDispatch<AppDispatch>()
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [productIdToDelete, setProductIdToDelete] = useState<number | null>(null);
   const BASE_URL = "http://api.alikooshesh.ir:3000";
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 5;
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+
   useEffect(() => {
     getProduct().then((res) => dispatch(setProducts(res)))
   }, []);
   console.log("Products:", products);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const productsPerPage = 5;
-
-  // محاسبه محصولاتی که باید در صفحه فعلی نمایش داده شوند
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
-
-  // تغییر صفحه
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
+const deleteHandler=()=>{
+  if (productIdToDelete !== null) {
+    dispatch(deleteProducts(productIdToDelete))
+    setIsDeleteModalOpen(false)
+    setProductIdToDelete(null)
+  }
+}
   return (
     <div className='flex flex-col gap-4 items-center m-8'>
       <div className='flex justify-end'>
@@ -53,7 +60,7 @@ export default function page() {
               <td className='w-[150px]'>{item.category}</td>
               <td className='p-2 w-40'>
                 <span className='flex gap-2 justify-center'>
-                  <FcFullTrash className='cursor-pointer' />
+                  <FcFullTrash onClick={()=>{setProductIdToDelete(item.id);setIsDeleteModalOpen(true)}} className='cursor-pointer' />
                   <FcSurvey className='cursor-pointer' />
                 </span>
               </td>
@@ -79,6 +86,11 @@ export default function page() {
          {proTabel.next}
         </button>
       </div>
+      <DeletModal
+        isOpen={isDeleteModalOpen}
+        onClose={() => setIsDeleteModalOpen(false)}
+        onDelet={deleteHandler}
+      />
     </div>
   )
 }
