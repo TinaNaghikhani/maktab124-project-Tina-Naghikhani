@@ -34,4 +34,7 @@ export const singlePageLoc = {
   category: "دسته بندی : ",
   price:"قیمت",
   order:"خرید",
+  founder:"پدیدآورندگان",
+  header:"بالای صفحه",
+  buy:"خرید آنلاین",
 };
