@@ -12,7 +12,7 @@ export default function DeletModal({ onDelet, onClose, isOpen }: DeletModalInter
   const { deletModal } = dashboardLocalization;
 
   if (!isOpen) {
-    return null; // اگر مودال بسته باشد، هیچ چیزی رندر نمی‌شود
+    return null;
   }
 
   return (

@@ -72,12 +72,12 @@ export const dashboardLocalization = {
     namePlaceHolder: "طاعون",
     nameLabel: "نام محصول:",
     addBtn: "اضافه کردن",
-    category1: "شعر",
+    category1:"داستان کوتاه",
     category2: "ادبیات کلاسیک",
     category3: "فانتزی",
-    category4: "رمان های خارجی",
-    category5: "داستان کوتاه",
-    category6: "کودک و نوجوان",
+    category4: "ادبی",
+    category5: "رمان",
+    discriptionLabel:"توضیحات : "
   },
   deletModal: {
     text: "از حذف محصول اطمیان کامل دارید؟",
