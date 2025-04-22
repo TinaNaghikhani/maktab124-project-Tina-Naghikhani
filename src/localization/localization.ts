@@ -134,3 +134,15 @@ export const dashboardLocalization = {
     },
   },
 };
+export const singlePageLoc = {
+  athur: "نویسنده : ",
+  pages: "تعداد صفحه : ",
+  cover: "جلد : ",
+  name: "نام کتاب : ",
+  category: "دسته بندی : ",
+  price: "قیمت",
+  order: "خرید",
+  founder: "پدیدآورندگان",
+  header: "بالای صفحه",
+  buy: "خرید آنلاین",
+};
