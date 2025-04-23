@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import './styles.css';
-import { Pagination } from 'swiper/modules';
+import { Pagination,Autoplay } from 'swiper/modules';
 import slid1 from'@/assets/Picsart_25-04-23_12-53-15-787.jpg'
 import slid2 from '@/assets/Picsart_25-04-23_12-53-33-808.jpg'
 import slid3 from '@/assets/Picsart_25-04-23_12-54-13-045.jpg'
@@ -23,8 +23,11 @@ export default function Cardcontainer() {
         <>
             <Swiper id='Swiper'
                 pagination={pagination}
-                modules={[Pagination]}
-                className="mySwiper"
+                modules={[Pagination, Autoplay]}
+                autoplay={{
+                    delay:2000,
+                    disableOnInteraction: false,
+                }}
             >
                 <SwiperSlide id='SwiperSlide'><Image src={slid1} alt={''}/></SwiperSlide>
                 <SwiperSlide id='SwiperSlide'><Image src={slid2} alt={''}/></SwiperSlide>
