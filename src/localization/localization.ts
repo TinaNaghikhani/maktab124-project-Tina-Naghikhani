@@ -65,6 +65,9 @@ export const dashboardLocalization = {
     userName: "نام کاربر",
     price: "مبلغ پرداختی",
     time: "زمان ثبت سفارش",
+    latest:"قدیمی ترین",
+    newest:"جدیدترین",
+    placeholder:"انتخاب فیلتر"
   },
   addModal: {
     photo: "عکس محصول",
