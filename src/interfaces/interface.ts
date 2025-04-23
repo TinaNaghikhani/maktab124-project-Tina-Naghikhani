@@ -35,3 +35,17 @@ export interface products {
   id: number | string;
   count: number;
 }
+export interface ProductsInterface {
+  id?: string;
+  name: string;
+  image: string;
+  category: string;
+  price: string;
+  count: string;
+}
+export interface EditModalInterface {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave: (updateData: { name: string; price: number; count: number }) => void;
+  product: { id: number; name: string; price: number; count: number };
+}

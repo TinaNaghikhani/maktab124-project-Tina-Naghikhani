@@ -59,6 +59,7 @@ export const dashboardLocalization = {
     page: "صفحه",
     next: "بعدی",
     pre: "قبلی",
+    acction:"عملیات"
   },
   orderTabel: {
     userName: "نام کاربر",
