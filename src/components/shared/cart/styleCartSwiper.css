@@ -20,10 +20,6 @@ body {
 .swiper {
     width: 100%;
     height: 100%;
-    /* display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    grid-template-rows: repeat(2, minmax(0, 1fr));
-    gap: 20px; */
 }
 
 .swiper-slide {
@@ -43,4 +39,8 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+#SwiperSlide {
+    width: 83%;
 }
