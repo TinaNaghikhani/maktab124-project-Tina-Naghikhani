@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { dashboardLocalization } from '@/localization/localization'
 import Button from '@/components/base/button/page'
 import { getProduct } from '@/services/getProduct/page';
+import InventoryEditeModal from '@/components/modals/inventoryEdite/inventoruEdite';
 
 export default function page() {
   const { invenTabel } = dashboardLocalization
@@ -29,8 +30,9 @@ export default function page() {
 
   return (
     <div className='flex flex-col gap-10 items-center m-8'>
-      <Button type={'button'} className={'bg-[#414833] text-white rounded-full p-2 text-2xl font-bold cursor-pointer'} label={invenTabel.save} />
-
+      <InventoryEditeModal isOpen={true} onClose={function (): void {
+        throw new Error('Function not implemented.');
+      } }/>
       <table className='w-5/6 text-center text-xl p-2 bg-[#A4AC86] rounded-xl text-white shadow-xl'>
         <thead className='p-2 border'>
           <tr>

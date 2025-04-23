@@ -53,7 +53,7 @@ export const dashboardLocalization = {
   },
   invenTabel: {
     price: "قیمت",
-    product: "کالا",
+    product: "نام کالا",
     inventory: "موجودی",
     save: "ذخیره",
     page: "صفحه",
