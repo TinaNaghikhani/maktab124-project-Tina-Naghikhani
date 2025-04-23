@@ -7,7 +7,7 @@ import Button from '@/components/base/button/page';
 import AddModal from '@/components/modals/addModalProductP/addModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProduct } from '@/services/getProduct/page';
-import { deleteProducts, setProducts } from '@/redux/reducers/products';
+import { setProducts } from '@/redux/reducers/products';
 import { AppDispatch, RootState } from '@/redux/store';
 import DeletModal from '@/components/modals/deletModalProductPage/deletModal';
 import { deleteProduct } from '@/services/deleteProduct';

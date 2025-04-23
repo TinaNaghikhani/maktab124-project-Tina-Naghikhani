@@ -12,8 +12,9 @@ export const deleteProduct = async (id: number) => {
         if (!accessToken) {
             throw new Error("Access token is missing or expired.");
         }
+        console.log("Trying to delete product with ID:", id);
 
-        const response = await axios.delete(`${BASE_URL}/products/${id}`, {
+        const response = await axios.delete(`${BASE_URL}/api/records/product/${id}`, {
             headers: {
                 "api_key": API_KEY,
                 "Authorization": `Bearer ${accessToken}`,
