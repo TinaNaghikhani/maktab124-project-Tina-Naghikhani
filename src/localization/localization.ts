@@ -77,21 +77,25 @@ export const dashboardLocalization = {
     page: "صفحه",
     next: "بعدی",
     pre: "قبلی",
-    actions:"عملیات"
+    actions: "عملیات",
   },
   invenTabel: {
     price: "قیمت",
-    product: "کالا",
+    product: "نام کالا",
     inventory: "موجودی",
     save: "ذخیره",
     page: "صفحه",
     next: "بعدی",
     pre: "قبلی",
+    acction:"عملیات"
   },
   orderTabel: {
     userName: "نام کاربر",
     price: "مبلغ پرداختی",
     time: "زمان ثبت سفارش",
+    latest:"قدیمی ترین",
+    newest:"جدیدترین",
+    placeholder:"انتخاب فیلتر"
   },
   addModal: {
     photo: "عکس محصول",
@@ -100,12 +104,17 @@ export const dashboardLocalization = {
     namePlaceHolder: "طاعون",
     nameLabel: "نام محصول:",
     addBtn: "اضافه کردن",
-    category1: "شعر",
+    category1:"داستان کوتاه",
     category2: "ادبیات کلاسیک",
     category3: "فانتزی",
-    category4: "رمان های خارجی",
-    category5: "داستان کوتاه",
-    category6: "کودک و نوجوان",
+    category4: "ادبی",
+    category5: "رمان",
+    discriptionLabel:"توضیحات : "
+  },
+  deletModal: {
+    text: "از حذف محصول اطمیان کامل دارید؟",
+    canceled: "انصراف",
+    accept: "تایید",
   },
   charts: {
     SaleChartTitle: "مقایسه فروش سال اتی و سال گذشته",
