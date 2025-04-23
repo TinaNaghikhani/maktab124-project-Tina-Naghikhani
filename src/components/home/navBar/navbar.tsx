@@ -12,10 +12,10 @@ export default function Navbar() {
     return (
         <div className='bg-[#A68A64] w-5/6 h-18 rounded-4xl mb-20'>
             <nav className='flex -mt-26'>
-                <Link href={''}><Image className='' src={fantasy} alt={''} /></Link>
-                <Link href={''}><Image className='' src={old} alt={''} /></Link>
-                <Link href={''}><Image className='' src={litrituer} alt={''} /></Link>
-                <Link href={''}><Image className='' src={novel} alt={''} /></Link>
+                <Link href={''}><Image className='' src={fantasy} alt={'فانتزی'} /></Link>
+                <Link href={''}><Image className='' src={old} alt={'ادبیات کلاسیک'} /></Link>
+                <Link href={''}><Image className='' src={litrituer} alt={'ادبی'} /></Link>
+                <Link href={''}><Image className='' src={novel} alt={'رمان'} /></Link>
 
             </nav>
         </div>

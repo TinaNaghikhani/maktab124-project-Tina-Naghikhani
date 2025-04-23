@@ -17,12 +17,13 @@ body {
     padding: 0;
 }
 
-.swiper {
+#Swiper {
     width: 100%;
     height: 100%;
+    border-radius: 50px;
 }
 
-.swiper-slide {
+#SwiperSlide {
     text-align: center;
     font-size: 18px;
     background: #fff;
@@ -33,7 +34,7 @@ body {
     align-items: center;
 }
 
-.swiper-slide img {
+#SwiperSlide img {
     display: block;
     width: 100%;
     height: 100%;
@@ -53,5 +54,5 @@ body {
 
 .swiper-pagination-bullet-active {
     color: #fff;
-    background: #007aff;
+    background: #492616;
 }
