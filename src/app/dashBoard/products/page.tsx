@@ -11,6 +11,7 @@ import { setProducts } from '@/redux/reducers/products';
 import { AppDispatch, RootState } from '@/redux/store';
 import DeletModal from '@/components/modals/deletModalProductPage/deletModal';
 import { deleteProduct } from '@/services/deleteProduct';
+import { postProduct } from '@/services/postProducts/postProducts';
 
 export default function page() {
   const { proTabel } = dashboardLocalization
@@ -45,8 +46,42 @@ export default function page() {
     }
   };
   const addProduct = () => {
-    setIsEditModalOpen(true)
-  }
+    setIsEditModalOpen(true);
+  };
+  const handleAddProduct = async (Product: any) => {
+    try {
+      // ارسال داده‌ها به API
+      await postProduct({
+        name: Product.name,
+        category: Product.category,
+        image: Product.image,
+        headerImg: Product.headerImg,
+        athur: Product.athur,
+        athurPic: Product.athurPic,
+        pub: Product.pub,
+        price: Product.price,
+        offer: Product.offer,
+        pages: Product.pages,
+        age: Product.age,
+        count: Product.count,
+        cover: Product.cover,
+        discription1: Product.discription1,
+        discription2: Product.discription2,
+        discription3: Product.discription3,
+      });
+
+      // بستن مودال بعد از ارسال موفق
+      setIsEditModalOpen(false);
+
+      // آپدیت لیست محصولات بعد از افزودن محصول جدید
+      const updatedProducts = await getProduct();
+      dispatch(setProducts(updatedProducts));
+
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
+  };
+
   return (
     <div className='flex flex-col gap-4 items-center m-8'>
       <div className='flex justify-end'>
@@ -99,7 +134,7 @@ export default function page() {
         onClose={() => setIsDeleteModalOpen(false)}
         onDelet={deleteHandler}
       />
-      <AddModal onClose={() => setIsEditModalOpen(false)} isOpen={isEditModalOpen} />
+      <AddModal onClose={() => setIsEditModalOpen(false)} isOpen={isEditModalOpen} onAdd={handleAddProduct} />
     </div>
   )
 }
