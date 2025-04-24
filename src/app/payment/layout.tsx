@@ -6,8 +6,7 @@ export default function PaymentLayout({ children }: LayoutProps) {
   return (
     <div>
       <Header/>
-      <main>{children}</main>
-      <Footer/>
+      <main className='p-40'>{children}</main>      <Footer/>
     </div>
   )
 }

@@ -22,7 +22,7 @@ export default function Header() {
                     {/* <button className='text-xl cursor-pointer hover:border-b'>{header.fantasy}</button>
                     <button className='text-xl cursor-pointer hover:border-b'>{header.litriture}</button>
                     <button className='text-xl cursor-pointer hover:border-b'>{header.history}</button> */}
-                    <button className='text-xl cursor-pointer hover:border-b'>{header.juniuor}</button>
+                    {/* <button className='text-xl cursor-pointer hover:border-b'>{header.juniuor}</button> */}
                     {/* <button className='text-xl cursor-pointer hover:border-b'>{header.novel}</button> */}
                     <Link href={'/about'}>
                         <button className='text-xl cursor-pointer hover:border-b'>{header.about}</button>
@@ -39,7 +39,9 @@ export default function Header() {
                 height={200}
                 className="-pt-2" />
             <div className='p-4 flex gap-8'>
-                <IoIosBasket className="text-3xl cursor-pointer hover:border-b" />
+                <Link href={'/cart'}>
+                    <IoIosBasket className="text-3xl cursor-pointer hover:border-b" />
+                </Link>
             <Link href="/login-dashboard">
                 <CgProfile className="text-3xl cursor-pointer hover:border-b" />
             </Link>

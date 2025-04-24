@@ -73,7 +73,7 @@ export default function CategoryPage() {
                 <h1 className="text-4xl font-bold mb-4">{category}</h1>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                     {books.map((book) => (
-                        <CardComponent product={book} />
+                        <CardComponent key={book.id} product={book} />
                     ))}
                 </div>
 

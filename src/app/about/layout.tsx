@@ -5,9 +5,9 @@ import { LayoutProps } from '@/interfaces/interface'
 export default function AboutLayout({ children }: LayoutProps) {
   return (
     <div>
-      <Header/>
-      <main>{children}</main>
-      <Footer/>
+      <Header />
+      <main className='p-40'>{children}</main>
+      <Footer />
     </div>
   )
 }

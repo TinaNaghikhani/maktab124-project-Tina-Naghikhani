@@ -54,7 +54,7 @@ export default function SingleProductComponent({product}:any) {
                                           <span className='bg-red-700 text-white font-bold text-lg rounded-3xl p-1'>{product.offer}%</span>
                                           <span className='text-2xl'>{product.price} تومان</span>
                                       </div>
-                                      <span className='self-end text-2xl'>203.700 T</span>
+                                      {/* <span className='self-end text-2xl'>203.700 T</span> */}
                                   </div>
                               </div>
                               <hr className='w-full rounded-full mx-10 h-1 bg-[#7F4F24] border-0 ' />
