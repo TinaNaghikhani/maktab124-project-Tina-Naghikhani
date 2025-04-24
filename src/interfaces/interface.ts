@@ -27,25 +27,3 @@ export interface dashboard {
 export interface LayoutProps {
   children: ReactNode;
 }
-export interface products {
-  image: string;
-  name: string;
-  category: string;
-  price: number;
-  id: number | string;
-  count: number;
-}
-export interface ProductsInterface {
-  id?: string;
-  name: string;
-  image: string;
-  category: string;
-  price: string;
-  count: string;
-}
-export interface EditModalInterface {
-  isOpen: boolean;
-  onClose: () => void;
-  onSave: (updateData: { name: string; price: number; count: number }) => void;
-  product: { id: number; name: string; price: number; count: number };
-}
