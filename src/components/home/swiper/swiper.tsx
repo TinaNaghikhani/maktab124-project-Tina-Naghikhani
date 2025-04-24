@@ -29,12 +29,12 @@ export default function Cardcontainer() {
                     disableOnInteraction: false,
                 }}
             >
-                <SwiperSlide id='SwiperSlide'><Image src={slid1} alt={''}/></SwiperSlide>
-                <SwiperSlide id='SwiperSlide'><Image src={slid2} alt={''}/></SwiperSlide>
-                <SwiperSlide id='SwiperSlide'><Image src={slid3} alt={'slide3'}/></SwiperSlide>
-                <SwiperSlide id='SwiperSlide'><Image src={slid4} alt={''}/></SwiperSlide>
-                <SwiperSlide id='SwiperSlide'><Image src={slid5} alt={''}/></SwiperSlide>
-                <SwiperSlide id='SwiperSlide'><Image src={slid6} alt={''}/></SwiperSlide>
+                <SwiperSlide id='SwiperSlide'><Image src={slid1} alt={'slid1'}/></SwiperSlide>
+                <SwiperSlide id='SwiperSlide'><Image src={slid2} alt={'slid2'}/></SwiperSlide>
+                <SwiperSlide id='SwiperSlide'><Image src={slid3} alt={'slid3'}/></SwiperSlide>
+                <SwiperSlide id='SwiperSlide'><Image src={slid4} alt={'slid4'}/></SwiperSlide>
+                <SwiperSlide id='SwiperSlide'><Image src={slid5} alt={'slid5'}/></SwiperSlide>
+                <SwiperSlide id='SwiperSlide'><Image src={slid6} alt={'slid6'}/></SwiperSlide>
 
             </Swiper>
         </>
