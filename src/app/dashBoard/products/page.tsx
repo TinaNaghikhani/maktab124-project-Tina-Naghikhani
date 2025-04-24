@@ -13,6 +13,7 @@ import DeletModal from '@/components/modals/deletModalProductPage/deletModal';
 import { deleteProduct } from '@/services/deleteProduct';
 import { postProduct } from '@/services/postProducts/postProducts';
 import EditeModal from '@/components/modals/editModal/editModal';
+import { editProduct } from '@/services/editProductProPage/editProduct';
 
 export default function page() {
   const { proTabel } = dashboardLocalization
@@ -21,6 +22,10 @@ export default function page() {
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [productIdToDelete, setProductIdToDelete] = useState<number | null>(null);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isEditeModalOpen, setIsEditeModalOpen] = useState(false)
+  const [productIdToEdite, setProductIdToEdite] = useState<number | null>(null);
+  const [productToEdit, setProductToEdit] = useState<any | null>(null);
+
   const BASE_URL = "http://api.alikooshesh.ir:3000";
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 5;
@@ -49,6 +54,7 @@ export default function page() {
   const addProduct = () => {
     setIsAddModalOpen(true);
   };
+
   const handleAddProduct = async (Product: any) => {
     try {
       // ارسال داده‌ها به API
@@ -82,6 +88,17 @@ export default function page() {
       console.error("Error adding product:", error);
     }
   };
+  const handleEditProduct = async (editedProduct: any) => {
+    try {
+      await editProduct(productIdToEdite!, editedProduct); // فرض اینکه تابع editProduct در سرویس‌ها تعریف شده
+      setIsEditeModalOpen(false);
+      setProductToEdit(null);
+      const updated = await getProduct();
+      dispatch(setProducts(updated));
+    } catch (error) {
+      console.error("خطا در ویرایش محصول:", error);
+    }
+  };
 
   return (
     <div className='flex flex-col gap-4 items-center m-8'>
@@ -106,7 +123,12 @@ export default function page() {
               <td className='p-2 w-40'>
                 <span className='flex gap-2 justify-center'>
                   <FcFullTrash onClick={() => { setProductIdToDelete(item.id); setIsDeleteModalOpen(true) }} className='cursor-pointer' />
-                  <FcSurvey className='cursor-pointer' />
+                  <FcSurvey onClick={() => {
+                    setProductIdToEdite(item.id);
+                    setProductToEdit(item);
+                    setIsEditeModalOpen(true);
+                  }} className='cursor-pointer' />
+
                 </span>
               </td>
             </tr>
@@ -136,9 +158,12 @@ export default function page() {
         onDelet={deleteHandler}
       />
       <AddModal onClose={() => setIsAddModalOpen(false)} isOpen={isAddModalOpen} onAdd={handleAddProduct} />
-        <EditeModal isOpen={false} onClose={function (): void {
-        throw new Error('Function not implemented.');
-      } }/>
+      <EditeModal
+        isOpen={isEditeModalOpen}
+        onClose={() => setIsEditeModalOpen(false)}
+        onEdite={handleEditProduct}
+        product={productToEdit}
+      />
     </div>
   )
 }
