@@ -17,13 +17,13 @@ export default function SingleProductComponent({product}:any) {
           <main>
               {product && (
                   <div className='p-4 flex flex-col gap-10'>
-                      <Image
+                      <img
                           src={`${BASE_URL}${product.headerImg}`}
                           alt="تصویر"
                       />
                       <div className='flex justify-around gap-8 w-full'>
                           <div id='image' className='sticky top-120 left-10 block flex flex-col items-center justift-center gap-4'>
-                              <Image
+                              <img
                                   src={`${BASE_URL}${product.image}`}
                                   alt="تصویر"
                                   className='w-80 h-80 rounded-3xl'
@@ -64,7 +64,7 @@ export default function SingleProductComponent({product}:any) {
                               </div>
                               <div className='w-full h-96 flex gap-6 justify-start items-center bg-[#C2C5AA] p-6 border-t-10 rounded-2xl border-b-10 border-[#B6AD90]'>
                                   <div className='flex flex-col items-center gap-6 '>
-                                      <Image
+                                      <img
                                           src={`${BASE_URL}${product.athurPic}`}
                                           alt="تصویر"
                                           className='w-40 h-40 rounded-3xl'
