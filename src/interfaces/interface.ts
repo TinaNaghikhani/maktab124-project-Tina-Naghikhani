@@ -27,3 +27,9 @@ export interface dashboard{
 export interface LayoutProps {
   children: ReactNode; 
 }
+ interface IProduct{
+  
+ }
+export interface SingleProductProps {
+  product: IProduct;
+}
