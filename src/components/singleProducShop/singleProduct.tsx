@@ -20,6 +20,7 @@ export default function SingleProductComponent({product}:any) {
                       <img
                           src={`${BASE_URL}${product.headerImg}`}
                           alt="تصویر"
+                          className='rounded-3xl'
                       />
                       <div className='flex justify-around gap-8 w-full'>
                           <div id='image' className='sticky top-120 left-10 block flex flex-col items-center justift-center gap-4'>

@@ -39,7 +39,7 @@ export default function Cardcontainer() {
                 mousewheel={true}
                 keyboard={true}
                 modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-                slidesPerView={3}
+                slidesPerView={5}
                 spaceBetween={30}
             >
                 {products.map((product: any) => (<SwiperSlide id='SwiperSlide'><CardComponent product={product}/></SwiperSlide>))}
