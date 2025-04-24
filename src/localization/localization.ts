@@ -109,7 +109,10 @@ export const dashboardLocalization = {
     category3: "فانتزی",
     category4: "ادبی",
     category5: "رمان",
-    discriptionLabel:"توضیحات : "
+    discriptionLabel:"توضیحات : ",
+    adult:"بزرگسال",
+    junior:"نوجوان",
+    young:"جوان",
   },
   deletModal: {
     text: "از حذف محصول اطمیان کامل دارید؟",

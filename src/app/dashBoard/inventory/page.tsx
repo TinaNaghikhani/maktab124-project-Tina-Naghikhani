@@ -4,7 +4,7 @@ import { dashboardLocalization } from '@/localization/localization'
 import { getProduct } from '@/services/getProduct/page';
 import InventoryEditeModal from '@/components/modals/inventoryEdite/inventoruEdite';
 import { FcSurvey } from "react-icons/fc";
-import { PutProduct } from '@/services/putProduct/page';
+import { PutProduct } from '@/services/putProductInventory/page';
 
 export default function page() {
   const { invenTabel } = dashboardLocalization
