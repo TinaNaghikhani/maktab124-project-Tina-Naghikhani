@@ -1,21 +1,44 @@
-import React from 'react'
-import yagiHeader from '@/assets/yaghiheader.png'
-import book from '@/assets/yagi shenha/b6dca1e50653da04f51fcfcacfa29016.png'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image';
 import { singlePageLoc } from "@/localization/localization";
+import { useRouter } from 'next/router';
+
+
+
 export default function page() {
+  const router = useRouter()
+  const { id } = router.query
+  const [product, setProduct] = useState([])
+  const BASE_URL = "http://api.alikooshesh.ir:3000"
+  const api_key =
+    "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy"
+  const [loader, setLoader] = useState(false)
+  useEffect(() => {
+    if (!id) return;
+    fetch(`${BASE_URL}/api/records/product${id}`, {
+      headers: {
+        api_key: api_key
+      },
+    })
+      .then(res => res.json)
+      .then(data => setProduct(data));
+  }, [id]);
+
+  if (!product){
+    setLoader(true)
+  }
   return (
     <>
-    <main>
+      <main>
         <div className='p-4 flex flex-col gap-10'>
           <Image
-            src={yagiHeader}
+            src={''}
             alt="تصویر"
           />
           <div className='flex justify-around gap-8 w-full'>
             <div id='image' className='sticky top-120 left-10 block flex flex-col items-center justift-center gap-4'>
               <Image
-                src={book}
+                src={''}
                 alt="تصویر"
                 className='w-80 h-80 rounded-3xl'
               />
@@ -66,7 +89,7 @@ export default function page() {
             </div>
           </div>
         </div>
-    </main>
+      </main>
     </>
 
   )

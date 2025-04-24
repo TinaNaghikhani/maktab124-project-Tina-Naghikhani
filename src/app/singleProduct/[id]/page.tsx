@@ -1,4 +1,4 @@
-import SingleProduct from "@/app/singleProduct/page";
+import SingleProduct from "@/app/singleProduct/[id]";
 import React from "react";
 
 interface IProps {
@@ -6,8 +6,8 @@ interface IProps {
 }
 
 const BASE_URL="http://api.alikooshesh.ir:3000"
-const api_key:
-"booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy",
+const api_key=
+"booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy"
 
 async function Product({ params }: IProps) {
     const { id } = await params;
