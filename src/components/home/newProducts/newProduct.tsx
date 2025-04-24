@@ -2,7 +2,7 @@
 import React from 'react';
 import Cardcontainer from '@/components/shared/cart/cart';
 import Image from 'next/image';
-import boxHeader from '@/assets/Picsart_25-04-23_11-43-14-032.jpg'
+import boxHeader from '@/assets/Picsart_25-04-23_11-42-18-204.jpg'
 
 export default function NewProduct() {
 
