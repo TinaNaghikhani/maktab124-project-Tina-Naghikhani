@@ -12,6 +12,7 @@ import { AppDispatch, RootState } from '@/redux/store';
 import DeletModal from '@/components/modals/deletModalProductPage/deletModal';
 import { deleteProduct } from '@/services/deleteProduct';
 import { postProduct } from '@/services/postProducts/postProducts';
+import EditeModal from '@/components/modals/editModal/editModal';
 
 export default function page() {
   const { proTabel } = dashboardLocalization
@@ -19,7 +20,7 @@ export default function page() {
   const dispatch = useDispatch<AppDispatch>()
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [productIdToDelete, setProductIdToDelete] = useState<number | null>(null);
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const BASE_URL = "http://api.alikooshesh.ir:3000";
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 5;
@@ -46,7 +47,7 @@ export default function page() {
     }
   };
   const addProduct = () => {
-    setIsEditModalOpen(true);
+    setIsAddModalOpen(true);
   };
   const handleAddProduct = async (Product: any) => {
     try {
@@ -71,7 +72,7 @@ export default function page() {
       });
 
       // بستن مودال بعد از ارسال موفق
-      setIsEditModalOpen(false);
+      setIsAddModalOpen(false);
 
       // آپدیت لیست محصولات بعد از افزودن محصول جدید
       const updatedProducts = await getProduct();
@@ -134,7 +135,10 @@ export default function page() {
         onClose={() => setIsDeleteModalOpen(false)}
         onDelet={deleteHandler}
       />
-      <AddModal onClose={() => setIsEditModalOpen(false)} isOpen={isEditModalOpen} onAdd={handleAddProduct} />
+      <AddModal onClose={() => setIsAddModalOpen(false)} isOpen={isAddModalOpen} onAdd={handleAddProduct} />
+        <EditeModal isOpen={false} onClose={function (): void {
+        throw new Error('Function not implemented.');
+      } }/>
     </div>
   )
 }

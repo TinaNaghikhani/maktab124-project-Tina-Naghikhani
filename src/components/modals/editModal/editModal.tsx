@@ -7,7 +7,7 @@ interface EditModalInterface {
   onClose: () => void;
 
 }
-export default function AddModal({ isOpen, onClose }: EditModalInterface) {
+export default function EditeModal({ isOpen, onClose }: EditModalInterface) {
   const { addModal } = dashboardLocalization
   if (!isOpen) {
     return null
