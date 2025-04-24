@@ -17,14 +17,24 @@ export const pageLevelLocalization = {
   },
 };
 
-export const dashboardLocalization={
-  header:{
-    welcome:"خوش آمدید"
-    
+export const dashboardLocalization = {
+  header: {
+    welcome: "خوش آمدید",
   },
-  sidBar:{
-order:"سفارش ها",
-products:"کالاها",
-
-  }
-}
+  sidBar: {
+    order: "سفارش ها",
+    products: "کالاها",
+  },
+};
+export const singlePageLoc = {
+  athur: "نویسنده : ",
+  pages: "تعداد صفحه : ",
+  cover: "جلد : ",
+  name: "نام کتاب : ",
+  category: "دسته بندی : ",
+  price:"قیمت",
+  order:"خرید",
+  founder:"پدیدآورندگان",
+  header:"بالای صفحه",
+  buy:"خرید آنلاین",
+};
