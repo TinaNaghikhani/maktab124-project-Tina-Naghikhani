@@ -6,7 +6,7 @@ export default function CartLayout({ children }: LayoutProps) {
   return (
     <div>
       <Header/>
-      <main>{children}</main>
+      <main className='p-8 m-10'>{children}</main>
       <Footer/>
     </div>
   )
