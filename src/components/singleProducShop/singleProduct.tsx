@@ -2,11 +2,18 @@
 import React from 'react'
 import Image from 'next/image';
 import { singlePageLoc } from "@/localization/localization";
+import { useRouter } from 'next/navigation';
 export default function SingleProductComponent({product}:any) {
       const BASE_URL = "http://api.alikooshesh.ir:3000"
       const api_key =
         "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy"
     //   const [loader, setLoader] = useState(false)
+    
+    const router = useRouter()
+    const buyHandler =()=>{
+        router.push("/cart")
+    }
+    
   return (
       <div>
           {/* {loader && (
@@ -48,12 +55,16 @@ export default function SingleProductComponent({product}:any) {
                                       <span className='text-[#7F4F24] text-2xl font-semibold'><span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.category}</span>{product.category} , {product.age}</span>
                                   </div>
                                   <div className='w-44 flex flex-col gap-4 justify-center items-center p-2'>
-                                      <button className='bg-[#936639] w-40 h-8 rounded-4xl text-white text-xl'>{singlePageLoc.order}</button>
+                                      <button onClick={buyHandler} className='bg-[#936639] w-40 h-8 rounded-4xl text-white text-xl cursor-pointer'>{singlePageLoc.order}</button>
                                       <div className='flex gap-2 justify-between w-full'>
                                           <span className='bg-red-700 text-white font-bold text-lg rounded-3xl p-1'>{product.offer}%</span>
                                           <span className='text-2xl'>{product.price} تومان</span>
                                       </div>
-                                      <span className='self-end text-2xl'>203.700 T</span>
+                                      {product.offer > 0 && (
+                                          <span className='self-end text-2xl text-green-500'>
+                                              {Math.round(product.price * (1 - product.offer / 100)).toLocaleString()} تومان
+                                          </span>
+                                      )}
                                   </div>
                               </div>
                               <hr className='w-full rounded-full mx-10 h-1 bg-[#7F4F24] border-0 ' />
