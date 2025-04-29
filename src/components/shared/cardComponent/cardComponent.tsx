@@ -16,17 +16,21 @@ export default function CardComponent({ product }: any) {
                 />
                 <div className='flex flex-col gap-3 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#B6AD90] w-full h-full rounded-3xl'>
 
-                    <div>
+                    <div className='flex flex-col items-start'>
                         <p className='text-2xl text-[#656D4A] font-bold'>{product.name}</p>
                         <hr className='w-5/6 rounded-full h-1 bg-[#7F4F24] border-0 ' />
                         <p className='text-2xl text-[#656D4A] font-bold'>{product.athur}</p>
                         <hr className='w-5/6 rounded-full h-1 bg-[#7F4F24] border-0 ' />
-                        <div className='flex flex-col gap-4'>
-                            <div className='flex gap-2 justify-between w-full'>
+                        <div className='flex flex-col gap-2'>
+                            <div className='flex gap-10 p-2 items-around w-full'>
                                 <span className='bg-red-700 text-white font-bold text-lg rounded-3xl p-1'>{product.offer}%</span>
-                                <span className='text-2xl'>{product.price}</span>
+                                <span className='text-2xl'>{product.price} تومان</span>
                             </div>
-                            <span className='self-end text-2xl'>203.700 T</span>
+                            {product.offer > 0 && (
+                                <span className='self-end text-2xl -mt-2'>
+                                    {Math.round(product.price * (1 - product.offer / 100)).toLocaleString()} تومان
+                                </span>
+                            )}
                         </div>
                     </div>
                 </div>

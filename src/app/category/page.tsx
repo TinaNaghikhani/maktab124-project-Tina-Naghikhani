@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useSearchParams } from 'next/navigation';
 import CardComponent from '@/components/shared/cardComponent/cardComponent';
 import SwiperComponent from '@/components/shared/swiper/swiper';
+import Navbar from '@/components/home/navBar/navbar';
 
 const BASE_URL = "http://api.alikooshesh.ir:3000";
 const API_KEY = "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy";
@@ -68,6 +69,7 @@ export default function CategoryPage() {
     return (
         <div className="p-6 flex flex-col gap-4 items-center">
             <SwiperComponent />
+            <Navbar/>
             <div className='w-5/6 px-4 py-10 flex flex-col items-center gap-4 border-t-[20px] border-[#606c38] rounded-3xl'>
                 <h1 className="text-4xl font-bold mb-4">{category}</h1>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

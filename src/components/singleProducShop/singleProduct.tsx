@@ -76,7 +76,8 @@ export default function SingleProductComponent({ product }: any) {
                                             <span className='self-end text-2xl text-green-500'>
                                                 {Math.round(product.price * (1 - product.offer / 100)).toLocaleString()} تومان
                                             </span>
-                                        )}                                    </div>
+                                        )}
+                                    </div>
                                 </div>
                                 <hr className='w-full rounded-full mx-10 h-1 bg-[#7F4F24] border-0 ' />
                                 <div className='flex flex-col gap-4 text-2xl'>
