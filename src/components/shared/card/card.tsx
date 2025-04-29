@@ -13,7 +13,7 @@ import './styleCartSwiper.css';
 
 // import required modules
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
-import CardComponent from '../cartComponent/cardComponent';
+import CardComponent from '../cardComponent/cardComponent';
 
 export default function Cardcontainer() {
     const [products, setProducts] = useState<any[]>([]);
@@ -42,7 +42,7 @@ export default function Cardcontainer() {
                 slidesPerView={5}
                 spaceBetween={30}
             >
-                {products.map((product: any) => (<SwiperSlide id='SwiperSlide'><CardComponent product={product}/></SwiperSlide>))}
+                {products.map((product: any) => (<SwiperSlide id='SwiperSlide'><CardComponent product={product} /></SwiperSlide>))}
             </Swiper>
         </>
     )

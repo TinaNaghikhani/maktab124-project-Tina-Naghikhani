@@ -74,7 +74,7 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
     if (files && files.length > 0) {
       const file = files[0];
       const formDataFile = new FormData();
-      formDataFile.append("file", file);
+      formDataFile.append("image", file);
 
       fetch(`${BASE_URL}/api/files/upload`, {
         method: "POST",

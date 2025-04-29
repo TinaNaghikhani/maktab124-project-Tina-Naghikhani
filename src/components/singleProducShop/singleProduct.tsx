@@ -1,6 +1,5 @@
 'use client'
 import React, { createRef } from 'react'
-import Image from 'next/image';
 import { singlePageLoc } from "@/localization/localization";
 export default function SingleProductComponent({ product }: any) {
     const BASE_URL = "http://api.alikooshesh.ir:3000"
