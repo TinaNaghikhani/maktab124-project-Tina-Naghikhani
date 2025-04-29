@@ -12,7 +12,7 @@ import slid5 from '@/assets/Picsart_25-04-23_12-54-58-438.jpg'
 import slid6 from '@/assets/Picsart_25-04-23_12-55-14-468.jpg'
 import Image from 'next/image';
 
-export default function Swiper() {
+export default function SwiperComponent() {
     const pagination = {
         clickable: true,
         renderBullet: function (index: number, className: string) {
