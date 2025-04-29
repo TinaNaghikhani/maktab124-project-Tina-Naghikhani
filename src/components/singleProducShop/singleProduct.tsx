@@ -67,7 +67,7 @@ export default function SingleProductComponent({ product }: any) {
                                         <span className='text-[#7F4F24] text-2xl font-semibold'><span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.category}</span>{product.category} , {product.age}</span>
                                     </div>
                                     <div className='w-44 flex flex-col gap-4 justify-center items-center p-2'>
-                                        <button ref={buyRef} onClick={buyHandler} className='bg-[#936639] w-40 h-8 rounded-4xl text-white text-xl'>{singlePageLoc.order}</button>
+                                        <button ref={buyRef} onClick={buyHandler} className='cursor-pointer bg-[#936639] w-40 h-8 rounded-4xl text-white text-xl'>{singlePageLoc.order}</button>
                                         <div className='flex gap-2 justify-between w-full'>
                                             <span className='bg-red-700 text-white font-bold text-lg rounded-3xl p-1'>{product.offer}%</span>
                                             <span className='text-2xl'>{product.price} تومان</span>
