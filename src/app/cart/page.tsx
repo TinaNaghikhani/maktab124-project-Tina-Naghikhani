@@ -10,7 +10,7 @@ export default function page() {
   return (
     <div className='w-full flex flex-col gap-8 jusify-around items-center'>
       <SwiperComponent />
-      <div className='w-full flex gap-4'>
+      <div className='w-full flex gap-4 py-8'>
         <CartComponent />
         <ReceiptComponent/>
       </div>
