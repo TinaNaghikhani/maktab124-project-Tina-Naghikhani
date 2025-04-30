@@ -160,3 +160,11 @@ export const singlePageLoc = {
   header: "بالای صفحه",
   buy: "خرید آنلاین",
 };
+export const checkoutPageLoc ={
+  name:"نام :",
+  LName:"نام خانوادگی :",
+  phoneNumber:"شماره تلفن :",
+  address:"آدرس پستی :",
+  code:"کدپستی :",
+  chekoutBtn:"ثبت سفارش",
+}

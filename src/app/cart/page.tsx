@@ -13,6 +13,7 @@ export default function page() {
       <div className='w-full flex gap-4 py-8'>
         <CartComponent />
         <ReceiptComponent/>
+        
       </div>
 
     </div>
