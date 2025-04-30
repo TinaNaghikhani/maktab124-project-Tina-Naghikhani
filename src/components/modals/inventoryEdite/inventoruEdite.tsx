@@ -34,8 +34,8 @@ export default function InventoryEditeModal({ isOpen, onClose, onSave, product }
     }
     return (
         <div className='fixed top-0 left-0 flex items-center justify-center w-full h-screen bg-black/50 backdrop-blur-sm'>
-            <div className="bg-white rounded-xl shadow-xl text-black p-8 w-[400px] max-w-full">
-                <button className='corsur-pointer' onClick={onClose}>X</button>
+            <div className="bg-[#fefae0] rounded-xl shadow-xl text-black p-8 w-[400px] max-w-full">
+                <button className='corsur-pointer text-red-500' onClick={onClose}>X</button>
                 <div className='flex flex-col gap-4 text-2xl'>
                     <Input
                         type={'text'}
