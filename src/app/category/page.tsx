@@ -24,7 +24,9 @@ const getBooksByCategory = async (category: string) => {
                 'Content-Type': 'application/json',
             },
         });
-
+        if (category === 'همه کتاب ها') {
+            return result.data.records;
+        }
         return result.data.records.filter((book: { category: string; }) => book.category === category);  // فیلتر کردن بر اساس دسته‌بندی
     } catch (error) {
         console.error("Error fetching books:", error);
