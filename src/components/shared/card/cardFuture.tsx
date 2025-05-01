@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { getNewProduct } from '@/services/getProduct/page';
+import { getFutureProduct } from '@/services/getProduct/page';
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -15,13 +15,13 @@ import './styleCartSwiper.css';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import CardComponent from '../cardComponent/cardComponent';
 
-export default function Cardcontainer() {
+export default function CardForFutureProduct() {
     const [products, setProducts] = useState<any[]>([]);
 
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const data = await getNewProduct();
+                const data = await getFutureProduct();
                 setProducts(data);
             } catch (error) {
                 console.error('Error fetching products:', error);
