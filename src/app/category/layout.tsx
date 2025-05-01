@@ -7,7 +7,7 @@ export default function SingleProLayout({ children }: LayoutProps) {
     return (
         <div className='bg-[#FEFAE0]'>
             <Header/>
-            <main className="flex-grow">{children}</main>
+            <main className="flex-grow pb-96">{children}</main>
             <Footer/>
         </div>
     )

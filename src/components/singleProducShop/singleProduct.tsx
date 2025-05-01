@@ -1,12 +1,11 @@
 'use client'
-import React, { createRef } from 'react'
+import React, { createRef, useState } from 'react'
 import { singlePageLoc } from "@/localization/localization";
 import { useRouter } from 'next/navigation';
+import Loader from '../shared/loader/loader';
 export default function SingleProductComponent({ product }: any) {
     const BASE_URL = "http://api.alikooshesh.ir:3000"
-    const api_key =
-        "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy"
-    //   const [loader, setLoader] = useState(false)
+    const [loader, setLoader] = useState(false)
     const headerRef = createRef()
     const scrollToHeader = () => {
         headerRef.current.scrollIntoView({ behavior: "smooth" });
@@ -22,15 +21,17 @@ export default function SingleProductComponent({ product }: any) {
 
     const router = useRouter()
     const buyHandler = () => {
+        setLoader(true)
         router.push("/cart")
+
     }
     return (
         <div>
-            {/* {loader && (
-              <div className="bg-gray-600 bg-opacity-5 h-screen w-full absolute inset-0 flex items-center justify-center  z-50">
-                  <Loader />
-              </div>
-          )} */}
+            {loader && (
+                <div className="bg-gray-600 bg-opacity-5 h-screen w-full absolute inset-0 flex items-center justify-center z-50">
+                    <Loader />
+                </div>
+            )}
             <main>
                 {product && (
                     <div className='p-4 flex flex-col gap-10'>

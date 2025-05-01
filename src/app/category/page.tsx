@@ -5,11 +5,11 @@ import { useSearchParams } from 'next/navigation';
 import CardComponent from '@/components/shared/cardComponent/cardComponent';
 import SwiperComponent from '@/components/shared/swiper/swiper';
 import Navbar from '@/components/home/navBar/navbar';
+import Loader from '@/components/shared/loader/loader';
 
 const BASE_URL = "http://api.alikooshesh.ir:3000";
 const API_KEY = "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy";
 
-// گرفتن کتاب‌ها بر اساس دسته‌بندی
 const getBooksByCategory = async (category: string) => {
     try {
         const accessToken = localStorage.getItem('accessToken');
@@ -37,41 +37,43 @@ const getBooksByCategory = async (category: string) => {
 export default function CategoryPage() {
     const searchParams = useSearchParams()
     const category = searchParams.get("category")
-
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // استفاده از useEffect برای اطمینان از اینکه در محیط کلاینت کد اجرا می‌شود
     useEffect(() => {
         if (category) {
             setLoading(true);
             setError(null);
-            getBooksByCategory(category as string)  // درخواست برای گرفتن کتاب‌ها
+            getBooksByCategory(category as string)  
                 .then((data) => {
                     setBooks(data);
                 })
                 .catch((err) => {
-                    setError('خطا در بارگذاری کتاب‌ها');
+                    return setError('خطا در بارگذاری کتاب‌ها');
                 })
                 .finally(() => {
                     setLoading(false);
                 });
         }
-    }, [category]);  // وقتی `category` تغییر کرد، دوباره درخواست می‌دهیم
+    }, [category]);  
 
     if (loading) {
-        return <div>در حال بارگذاری...</div>;
+        
+            return (
+                <div className="bg-black opacity-50 h-screen w-full absolute inset-0 flex items-center justify-center z-10">
+                    <Loader />
+                </div>
+            )
     }
-
     if (error) {
-        return <div>{error}</div>;
+        return <div className='w-full h-full flex justify-center'>{error}</div>;
     }
     console.log(category)
     return (
         <div className="p-6 flex flex-col gap-4 items-center">
             <SwiperComponent />
-            <Navbar/>
+            <Navbar />
             <div className='w-5/6 px-4 py-10 flex flex-col items-center gap-4 border-t-[20px] border-[#606c38] rounded-3xl'>
                 <h1 className="text-4xl font-bold mb-4">{category}</h1>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
