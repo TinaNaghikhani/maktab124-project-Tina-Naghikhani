@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Input from '../../base/input/page';
 import Button from '../../base/button/page';
 import { dashboardLocalization } from '@/localization/localization';
+import { toast } from 'react-toastify';
 
 interface addModalInterface {
   isOpen: boolean;
@@ -69,9 +70,8 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
     if (files && files.length > 0) {
       const file = files[0];
       const formDataFile = new FormData();
-      formDataFile.append("file", file);
+      formDataFile.append("image", file);
       console.log([...formDataFile.entries()]);
-      // فرضاً یه API داری به اسم /upload که عکس رو می‌فرسته
       fetch(`${BASE_URL}/api/files/upload`, {
         method: "POST",
         headers: {
@@ -82,15 +82,28 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
       })
         .then(async (res) => {
           const contentType = res.headers.get("content-type");
+
           if (contentType && contentType.includes("application/json")) {
             const data = await res.json();
-            setFormData((prev) => ({ ...prev, [name]: data.url }));
+            const formKeyMap: Record<string, string> = {
+              image: "image",       // <Input name="image" /> -> key: "image"
+              headerImg: "headerImage", // <Input name="headerImg" /> -> key: "headerImage"
+              athurPic: "athurPic",     // <Input name="athurPic" /> -> key: "athurPic"
+            };
+            const formKey = formKeyMap[name] || name; // اگر نام input در مپ نبود، از خودش استفاده کن
+            setFormData((prev) => ({
+              ...prev,
+              [formKey]: data.url, // ذخیره URL در فرم با کلید مورد نظر
+            }));
           } else {
             const text = await res.text();
             console.error("Unexpected response (not JSON):", text);
           }
         })
-        .catch((err) => console.error("Upload error", err));
+        .catch((err) => {
+          console.error("Upload error", err);
+          toast.error("آپلود عکس با مشکل مواجه شد.");
+        });
     }
   };
 
