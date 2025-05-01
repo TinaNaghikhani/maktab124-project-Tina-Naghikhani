@@ -13,7 +13,7 @@ interface addModalInterface {
 export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) {
   const { addModal } = dashboardLocalization;
 
-  const [formData, setFormData] = useState({
+  const initialForm = {
     name: '',
     category: '',
     image: '',
@@ -30,14 +30,33 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
     discription1: '',
     discription2: '',
     discription3: '',
-  });
+  };
+
+  const [formData, setFormData] = useState(initialForm);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+
+  const validateForm = () => {
+    const newErrors: { [key: string]: string } = {};
+    if (!formData.name) newErrors.name = 'نام کتاب الزامی است';
+    if (!formData.category) newErrors.category = 'دسته‌بندی را انتخاب کنید';
+    if (!formData.athur) newErrors.athur = 'نام نویسنده الزامی است';
+    if (!formData.price) newErrors.price = 'قیمت الزامی است';
+    return newErrors;
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
+    setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const handleSubmit = () => {
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     onAdd(formData);
     setFormData({ 
       name: '',
@@ -58,14 +77,16 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
       discription3: '',
     });
   };
+
   const BASE_URL = "http://api.alikooshesh.ir:3000";
-  const API_KEY =
-    "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy";
+  const API_KEY = "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy";
+
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
       throw new Error("Access token is missing or expired.");
     }
+
     const { name, files } = e.target;
     if (files && files.length > 0) {
       const file = files[0];
