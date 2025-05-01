@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Input from '../../base/input/page'
 import Button from '../../base/button/page'
 import { dashboardLocalization } from '@/localization/localization'
-import { EditModalInterface } from '@/interfaces/interface'
+import { EditeModallInterface } from '@/interfaces/interface'
 
 
-export default function InventoryEditeModal({ isOpen, onClose, onSave, product }: EditModalInterface) {
+export default function InventoryEditeModal({ isOpen, onClose, onSave, product }: EditeModallInterface) {
     const { invenTabel } = dashboardLocalization
     const [formData, setFormData] = useState({
         name: '',

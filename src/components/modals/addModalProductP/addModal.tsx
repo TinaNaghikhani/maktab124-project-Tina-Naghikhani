@@ -13,7 +13,7 @@ interface addModalInterface {
 export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) {
   const { addModal } = dashboardLocalization;
 
-  const initialForm = {
+  const [formData, setFormData] = useState({
     name: '',
     category: '',
     image: '',
@@ -30,33 +30,14 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
     discription1: '',
     discription2: '',
     discription3: '',
-  };
-
-  const [formData, setFormData] = useState(initialForm);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
-
-  const validateForm = () => {
-    const newErrors: { [key: string]: string } = {};
-    if (!formData.name) newErrors.name = 'نام کتاب الزامی است';
-    if (!formData.category) newErrors.category = 'دسته‌بندی را انتخاب کنید';
-    if (!formData.athur) newErrors.athur = 'نام نویسنده الزامی است';
-    if (!formData.price) newErrors.price = 'قیمت الزامی است';
-    return newErrors;
-  };
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    setErrors((prev) => ({ ...prev, [name]: '' }));
   };
 
   const handleSubmit = () => {
-    const validationErrors = validateForm();
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
     onAdd(formData);
     setFormData({ 
       name: '',
@@ -77,57 +58,79 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
       discription3: '',
     });
   };
-
   const BASE_URL = "http://api.alikooshesh.ir:3000";
-  const API_KEY = "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy";
-
+  const API_KEY =
+    "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy";
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("File upload triggered", e.target.name, e.target.files); // دیباگ کردن
+
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
-      throw new Error("Access token is missing or expired.");
+      toast.error("توکن دسترسی یافت نشد");
+      return;
     }
 
     const { name, files } = e.target;
-    if (files && files.length > 0) {
-      const file = files[0];
-      const formDataFile = new FormData();
-      formDataFile.append("image", file);
-      console.log([...formDataFile.entries()]);
-      fetch(`${BASE_URL}/api/files/upload`, {
-        method: "POST",
-        headers: {
-          "api_key": API_KEY,
-          "Authorization": `Bearer ${accessToken}`,
-        },
-        body: formDataFile,
-      })
-        .then(async (res) => {
-          const contentType = res.headers.get("content-type");
+    if (!files || files.length === 0) return;
 
-          if (contentType && contentType.includes("application/json")) {
-            const data = await res.json();
-            const formKeyMap: Record<string, string> = {
-              image: "image",       // <Input name="image" /> -> key: "image"
-              headerImg: "headerImage", // <Input name="headerImg" /> -> key: "headerImage"
-              athurPic: "athurPic",     // <Input name="athurPic" /> -> key: "athurPic"
-            };
-            const formKey = formKeyMap[name] || name; // اگر نام input در مپ نبود، از خودش استفاده کن
+    const file = files[0];
+    const formDataFile = new FormData();
+    formDataFile.append("image", file); // API انتظار کلید "image" دارد
+
+    fetch(`${BASE_URL}/api/files/upload`, {
+      method: "POST",
+      headers: {
+        "api_key": API_KEY,
+        "Authorization": `Bearer ${accessToken}`,
+      },
+      body: formDataFile,
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          const text = await res.text();
+          console.error(`HTTP error! status: ${res.status}, body: ${text}`);
+          toast.error("خطا در آپلود عکس (کد خطا: " + res.status + ")");
+          return;
+        }
+
+        const contentType = res.headers.get("content-type");
+        if (contentType?.includes("application/json")) {
+          const data = await res.json();
+          console.log("Response data:", data); // چاپ داده‌های دریافتی
+
+          const formKeyMap: Record<string, string> = {
+            image: "image",       // <Input name="image" /> -> key: "image"
+            headerImg: "headerImage", // <Input name="headerImg" /> -> key: "headerImage"
+            athurPic: "athurPic",     // <Input name="athurPic" /> -> key: "athurPic"
+          };
+
+          const formKey = formKeyMap[name] || name;
+
+          // ✅ تغییر این بخش: استفاده از `downloadLink` به جای `url`
+          if (data && data.downloadLink) {
             setFormData((prev) => ({
               ...prev,
-              [formKey]: data.url, // ذخیره URL در فرم با کلید مورد نظر
+              [formKey]: data.downloadLink, // ذخیره `downloadLink` در فرم
             }));
+            toast.success("عکس با موفقیت آپلود شد");
           } else {
-            const text = await res.text();
-            console.error("Unexpected response (not JSON):", text);
+            console.error("Invalid response data:", data);
+            toast.error("فرمت پاسخ API اشتباه است");
           }
-        })
-        .catch((err) => {
-          console.error("Upload error", err);
-          toast.error("آپلود عکس با مشکل مواجه شد.");
-        });
-    }
+        } else {
+          const text = await res.text();
+          console.error("Unexpected response (not JSON):", text);
+          toast.error("پاسخ API فرمت نامعتبر است");
+        }
+      })
+      .catch((err) => {
+        console.error("Upload error", err);
+        toast.error("آپلود عکس با مشکل مواجه شد.");
+      })
+      .finally(() => {
+        e.target.value = ""; // پاک کردن ورودی فایل
+      });
   };
-
   if (!isOpen) return null;
 
   return (

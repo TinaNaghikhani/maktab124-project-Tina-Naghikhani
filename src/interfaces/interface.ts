@@ -27,3 +27,10 @@ export interface dashboard {
 export interface LayoutProps {
   children: ReactNode;
 }
+export interface EditeModallInterface {
+  isOpen: boolean;
+  onClose: () => void;
+  onSave:()=>void;
+  onEdite: (editeProduct: any) => void;
+  product: any;
+}

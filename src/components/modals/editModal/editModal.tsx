@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Input from '../../base/input/page';
 import Button from '../../base/button/page';
 import { dashboardLocalization } from '@/localization/localization';
+import { toast } from 'react-toastify';
 
 interface EditeModallInterface {
   isOpen: boolean;
@@ -31,6 +32,9 @@ export default function EditeModall({ isOpen, onClose, onEdite, product }: Edite
     discription2: '',
     discription3: '',
   });
+  const BASE_URL = "http://api.alikooshesh.ir:3000";
+  const API_KEY =
+    "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy";
 
   useEffect(() => {
     if (product) {
@@ -42,6 +46,76 @@ export default function EditeModall({ isOpen, onClose, onEdite, product }: Edite
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log("File upload triggered", e.target.name, e.target.files); // دیباگ کردن
+
+    const accessToken = localStorage.getItem("accessToken");
+    if (!accessToken) {
+      toast.error("توکن دسترسی یافت نشد");
+      return;
+    }
+
+    const { name, files } = e.target;
+    if (!files || files.length === 0) return;
+
+    const file = files[0];
+    const formDataFile = new FormData();
+    formDataFile.append("image", file); // API انتظار کلید "image" دارد
+
+    fetch(`${BASE_URL}/api/files/upload`, {
+      method: "POST",
+      headers: {
+        "api_key": API_KEY,
+        "Authorization": `Bearer ${accessToken}`,
+      },
+      body: formDataFile,
+    })
+      .then(async (res) => {
+        if (!res.ok) {
+          const text = await res.text();
+          console.error(`HTTP error! status: ${res.status}, body: ${text}`);
+          toast.error("خطا در آپلود عکس (کد خطا: " + res.status + ")");
+          return;
+        }
+
+        const contentType = res.headers.get("content-type");
+        if (contentType?.includes("application/json")) {
+          const data = await res.json();
+          console.log("Response data:", data); // چاپ داده‌های دریافتی
+
+          const formKeyMap: Record<string, string> = {
+            image: "image",       // <Input name="image" /> -> key: "image"
+            headerImg: "headerImage", // <Input name="headerImg" /> -> key: "headerImage"
+            athurPic: "athurPic",     // <Input name="athurPic" /> -> key: "athurPic"
+          };
+
+          const formKey = formKeyMap[name] || name;
+
+          // ✅ تغییر این بخش: استفاده از `downloadLink` به جای `url`
+          if (data && data.downloadLink) {
+            setFormData((prev) => ({
+              ...prev,
+              [formKey]: data.downloadLink, // ذخیره `downloadLink` در فرم
+            }));
+            toast.success("عکس با موفقیت آپلود شد");
+          } else {
+            console.error("Invalid response data:", data);
+            toast.error("فرمت پاسخ API اشتباه است");
+          }
+        } else {
+          const text = await res.text();
+          console.error("Unexpected response (not JSON):", text);
+          toast.error("پاسخ API فرمت نامعتبر است");
+        }
+      })
+      .catch((err) => {
+        console.error("Upload error", err);
+        toast.error("آپلود عکس با مشکل مواجه شد.");
+      })
+      .finally(() => {
+        e.target.value = ""; // پاک کردن ورودی فایل
+      });
+  };
   const handleSubmit = () => {
     onEdite(formData);
   };
@@ -65,9 +139,9 @@ export default function EditeModall({ isOpen, onClose, onEdite, product }: Edite
           <Input type="text" name="price" value={formData.price} onChange={handleChange} placeholder="قیمت" label="قیمت" className="border p-2 rounded-xl" />
           <Input type="text" name="athur" value={formData.athur} onChange={handleChange} placeholder="نام نویسنده" label="نویسنده" className="border p-2 rounded-xl" />
           <div className='grid grid-cols-3 col-span-3 gap-4 text-sm'>
-            <Input type="file" name="image" accept="image/*" placeholder="آدرس عکس اصلی" label="تصویر" className="border p-2 rounded-xl" />
-            <Input type="file" name="headerImg" accept="image/*" placeholder="آدرس هدر" label="تصویر هدر" className="border p-2 rounded-xl" />
-            <Input type="file" name="athurPic" accept="image/*" placeholder="عکس نویسنده" label="تصویر نویسنده" className="border p-2 rounded-xl" />
+            <Input type="file" name="image" accept="image/*" onChange={handleFileUpload} placeholder="آدرس عکس اصلی" label="تصویر" className="border p-2 rounded-xl" />
+            <Input type="file" name="headerImg" accept="image/*" onChange={handleFileUpload} placeholder="آدرس هدر" label="تصویر هدر" className="border p-2 rounded-xl" />
+            <Input type="file" name="athurPic" accept="image/*" onChange={handleFileUpload} placeholder="عکس نویسنده" label="تصویر نویسنده" className="border p-2 rounded-xl" />
           </div>
           <Input type="text" name="offer" value={formData.offer} onChange={handleChange} placeholder="تخفیف" label="تخفیف" className="border p-2 rounded-xl" />
           <Input type="text" name="pages" value={formData.pages} onChange={handleChange} placeholder="تعداد صفحات" label="صفحات" className="border p-2 rounded-xl" />

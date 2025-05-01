@@ -8,10 +8,10 @@ export default function CardComponent({ product }: any) {
     return (
         <Link href={`/singleProduct/${product.id}`}>
             <div className='w-52 h-64 relative overflow-hidden group'>
-                <Image
+                <img
                     src={`${BASE_URL}${product.image}`}
                     alt={product.name}
-                    fill
+                    
                     className='w-full h-full object-cover rounded-3xl absolute top-0 left-0 transition-opacity duration-300 group-hover:opacity-0'
                 />
                 <div className='flex flex-col gap-3 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#B6AD90] w-full h-full rounded-3xl'>
