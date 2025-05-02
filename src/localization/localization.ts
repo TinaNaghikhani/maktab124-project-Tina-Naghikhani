@@ -160,11 +160,18 @@ export const singlePageLoc = {
   header: "بالای صفحه",
   buy: "خرید آنلاین",
 };
-export const checkoutPageLoc ={
-  name:"نام :",
-  LName:"نام خانوادگی :",
-  phoneNumber:"شماره تلفن :",
-  address:"آدرس پستی :",
-  code:"کدپستی :",
-  chekoutBtn:"ثبت سفارش",
-}
+export const checkoutPageLoc = {
+  name: "نام :",
+  LName: "نام خانوادگی :",
+  phoneNumber: "شماره تلفن :",
+  address: "آدرس پستی :",
+  code: "کدپستی :",
+  chekoutBtn: "ثبت سفارش",
+  errorPhoneNumber: "تلفن همراه را وارد کنید",
+  errorCode: "کدپستی را وارد کنید",
+  errorPhoneNumberInput: "شماره تلفن وارد شده نامعتبر است ",
+  errorCodeInput: "کدپستی وارد شده نامعتبر است ",
+  errorName: "نام را وارد کنید",
+  errorLName: "نام خانوادگی را وارد کنید",
+  errorAddress: "آدرس را وارد کنید",
+};

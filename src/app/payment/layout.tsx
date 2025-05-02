@@ -5,8 +5,9 @@ import { LayoutProps } from '@/interfaces/interface'
 export default function PaymentLayout({ children }: LayoutProps) {
   return (
     <div>
-      <Header/>
-      <main className='p-40'>{children}</main>      <Footer/>
+      <Header />
+      <main>{children}</main>
+      <Footer />
     </div>
   )
 }
