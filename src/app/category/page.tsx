@@ -12,15 +12,9 @@ const API_KEY = "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9
 
 const getBooksByCategory = async (category: string) => {
     try {
-        const accessToken = localStorage.getItem('accessToken');
-        if (!accessToken) {
-            throw new Error('Access token is missing or expired.');
-        }
-
         const result = await axios.get(`${BASE_URL}/api/records/product`, {
             headers: {
                 'api_key': API_KEY,
-                'Authorization': `Bearer ${accessToken}`,
                 'Content-Type': 'application/json',
             },
         });

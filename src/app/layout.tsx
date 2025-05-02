@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import localFont from 'next/font/local';
+import { ToastContainer } from "react-toastify";
 
 const BZiba = localFont({
   src: '../../public/font/B\ Ziba_0.ttf', 
@@ -25,6 +26,7 @@ export default function RootLayout({
         <main className="flex-grow"> 
         {children}
         </main>
+        <ToastContainer rtl position="top-right" />
       </body>
     </html>
   );

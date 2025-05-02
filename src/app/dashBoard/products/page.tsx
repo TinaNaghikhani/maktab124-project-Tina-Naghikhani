@@ -25,7 +25,6 @@ export default function page() {
   const [isEditeModalOpen, setIsEditeModalOpen] = useState(false)
   const [productIdToEdite, setProductIdToEdite] = useState<number | null>(null);
   const [productToEdit, setProductToEdit] = useState<any | null>(null);
-
   const BASE_URL = "http://api.alikooshesh.ir:3000";
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 5;
@@ -57,7 +56,6 @@ export default function page() {
 
   const handleAddProduct = async (Product: any) => {
     try {
-      // ارسال داده‌ها به API
       await postProduct({
         name: Product.name,
         category: Product.category,
@@ -76,21 +74,16 @@ export default function page() {
         discription2: Product.discription2,
         discription3: Product.discription3,
       });
-
-      // بستن مودال بعد از ارسال موفق
       setIsAddModalOpen(false);
-
-      // آپدیت لیست محصولات بعد از افزودن محصول جدید
       const updatedProducts = await getProduct();
       dispatch(setProducts(updatedProducts));
-
     } catch (error) {
       console.error("Error adding product:", error);
     }
   };
   const handleEditProduct = async (editedProduct: any) => {
     try {
-      await editProduct(productIdToEdite!, editedProduct); // فرض اینکه تابع editProduct در سرویس‌ها تعریف شده
+      await editProduct(productIdToEdite!, editedProduct); 
       setIsEditeModalOpen(false);
       setProductToEdit(null);
       const updated = await getProduct();
