@@ -21,13 +21,20 @@ export default function SingleProductComponent({ product }: any) {
 
     const router = useRouter()
     const buyHandler = () => {
-        setLoader(true)
-    if (product.id) {
-        localStorage.setItem('setProduct',product.id())
-    }
-        router.push("/cart")
+        setLoader(true);
 
-    }
+        const savedProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+
+        if (product?.id && !savedProducts.includes(product.id)) {
+            savedProducts.push(product.id);
+        }
+
+        localStorage.setItem("cartProducts", JSON.stringify(savedProducts));
+
+        router.push("/cart");
+    };
+
+    
     return (
         <div>
             {loader && (
