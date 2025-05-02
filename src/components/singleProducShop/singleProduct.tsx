@@ -16,12 +16,15 @@ export default function SingleProductComponent({ product }: any) {
     };
     const buyRef = createRef()
     const scrollToBuy = () => {
-        buyRef.current.scrollIntoview({ behavior: "smooth" });
+        buyRef.current.scrollIntoView({ behavior: "smooth" });
     };
 
     const router = useRouter()
     const buyHandler = () => {
         setLoader(true)
+    if (product.id) {
+        localStorage.setItem('setProduct',product.id())
+    }
         router.push("/cart")
 
     }

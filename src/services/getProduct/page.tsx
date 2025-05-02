@@ -8,7 +8,8 @@ export const getProduct = async () => {
     try {
         const accessToken = localStorage.getItem("accessToken");
         if (!accessToken) {
-            throw new Error("Access token is missing or expired.");
+            window.location.href = '/login-dashboard';
+            return;
         }
         const result = await axios.get(`${BASE_URL}/api/records/product`, {
             headers: {
@@ -27,9 +28,9 @@ export const getProduct = async () => {
 export const getNewProduct = async () => {
     try {
         const accessToken = localStorage.getItem("accessToken");
-        if (!accessToken) {
-            throw new Error("Access token is missing or expired.");
-        }
+        // if (!accessToken) {
+        //     throw new Error("Access token is missing or expired.");
+        // }
         const result = await axios.get(`${BASE_URL}/api/records/new`, {
             headers: {
                 "api_key": API_KEY,
@@ -47,9 +48,9 @@ export const getNewProduct = async () => {
 export const getFutureProduct = async () => {
     try {
         const accessToken = localStorage.getItem("accessToken");
-        if (!accessToken) {
-            throw new Error("Access token is missing or expired.");
-        }
+        // if (!accessToken) {
+        //     throw new Error("Access token is missing or expired.");
+        // }
         const result = await axios.get(`${BASE_URL}/api/records/future`, {
             headers: {
                 "api_key": API_KEY,
