@@ -38,7 +38,7 @@ export default function SingleProductComponent({ product }: any) {
     return (
         <div>
             {loader && (
-                <div className="bg-gray-600 bg-opacity-5 h-screen w-full absolute inset-0 flex items-center justify-center z-50">
+                <div className="bg-gray-400 bg-opacity-5 w-full absolute inset-0 flex items-center justify-center z-50">
                     <Loader />
                 </div>
             )}

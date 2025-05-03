@@ -3,6 +3,7 @@ import "./globals.css";
 import localFont from 'next/font/local';
 import { ToastContainer } from "react-toastify";
 import { CartProvider } from '@/context/CartContext';
+import AppProviders from "./provider";
 
 const BZiba = localFont({
   src: '../../public/font/B\ Ziba_0.ttf',
@@ -24,12 +25,14 @@ export default function RootLayout({
       <body
         className={`${BZiba.className} font-sans antialiased flex flex-col min-h-screen`} style={{ background: '#FEFAE0' }}
       >
-        <main className="flex-grow">
-          <CartProvider>
-            {children}
-          </CartProvider>
-        </main>
-        <ToastContainer rtl position="top-right" />
+        <AppProviders>
+          <main className="flex-grow">
+            <CartProvider>
+              {children}
+            </CartProvider>
+          </main>
+        </AppProviders>
+
 
       </body>
     </html>
