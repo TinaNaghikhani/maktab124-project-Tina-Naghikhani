@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { useCart } from '@/context/CartContext'; 
+import { useCart } from '@/context/CartContext';
 import { FaTrashAlt } from "react-icons/fa";
 import React, { useEffect, useState } from 'react'
 import Button from '../base/button/page';
@@ -9,13 +9,11 @@ import { useRouter } from 'next/navigation';
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import {
-    addToCart,
     removeFromCart,
     setCartItems,
-    setQuantity,
     increaseQty,
     decreaseQty,
-} from "@/redux/reducers/order";
+} from "@/redux/reducers/cart";
 
 export default function CartComponent() {
     const dispatch = useDispatch();
