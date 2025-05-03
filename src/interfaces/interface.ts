@@ -9,8 +9,8 @@ export interface InputInterface {
   disabled?: boolean;
   id?: string;
   name?: string;
-  error?: string;
-  label: string;
+  error?: any;
+  label?: string;
 }
 
 export interface ButtonInterface {

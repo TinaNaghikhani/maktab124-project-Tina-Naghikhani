@@ -29,20 +29,20 @@ export const pageLevelLocalization = {
     emailError: "ایمیل خودرا وارد کنید",
     passwordError: "رمز عبور خودرا وارد کنید",
   },
-  singUpPageLoc : {
-  welcome: "به آبتیکا خوش آمدید!",
-  singUp: "اکانت خود را بسازید",
-  passwordLabel: "رمزعبور :",
-  passwordLabel2:"تکرار رمز عبور",
-  emailLabel: "ایمیل :",
-  alredyHaveAnAccount: "قبلا ثبت نام کردید؟",
-  login: "وارد شوید",
-  errorRequiredEmailInput: "ایمیل را وارد کنید",
-  errorRequiredPaaswordInput: "رمز عبور را وارد کنید",
-  errorEmailInput: "ایمیل وارد شده نامعتبر است ",
-  singUpBtn: "ثبت نام",
-  passwordError: "رمز عبور باید حداقل 8 رقم باشد",
-}
+  singUpPageLoc: {
+    welcome: "به آبتیکا خوش آمدید!",
+    singUp: "اکانت خود را بسازید",
+    passwordLabel: "رمزعبور :",
+    passwordLabel2: "تکرار رمز عبور",
+    emailLabel: "ایمیل :",
+    alredyHaveAnAccount: "قبلا ثبت نام کردید؟",
+    login: "وارد شوید",
+    errorRequiredEmailInput: "ایمیل را وارد کنید",
+    errorRequiredPaaswordInput: "رمز عبور را وارد کنید",
+    errorEmailInput: "ایمیل وارد شده نامعتبر است ",
+    singUpBtn: "ثبت نام",
+    passwordError: "رمز عبور باید حداقل 8 رقم باشد",
+  },
 };
 
 export const dashboardLocalization = {
@@ -88,7 +88,7 @@ export const dashboardLocalization = {
     next: "بعدی",
     pre: "قبلی",
     acction: "عملیات",
-    editProduct:"ویرایش موجودی محصول",
+    editProduct: "ویرایش موجودی محصول",
   },
   orderTabel: {
     userName: "نام کاربر",
@@ -174,4 +174,15 @@ export const checkoutPageLoc = {
   errorName: "نام را وارد کنید",
   errorLName: "نام خانوادگی را وارد کنید",
   errorAddress: "آدرس را وارد کنید",
+};
+export const receipt = {
+  disCount: "کد تخفیف : ",
+  diCountBtn: "اعمال کد تخفیف",
+  disCoutSuccess: "کد تخفیف اعمال شد✅",
+  disCountUnSuccess: "کد تخفیف معتبر نیست!",
+  bookPrice: "قیمت کتاب ها",
+  totalDiscount: "تخفیف:",
+  totalPrice: "قیمت نهایی",
+  priceToPay: "مبلغ قابل پرداخت",
+  payBtn: "اتمام خرید",
 };
