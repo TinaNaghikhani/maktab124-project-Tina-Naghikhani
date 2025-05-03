@@ -20,6 +20,8 @@ export default function SingUpPage() {
   const [emailError, setEmailError] = useState("")
   const [passwordError, setPassWordError] = useState("")
   const [isSubmit, setIsSubmit] = useState(false)
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [confirmPasswordError, setConfirmPasswordError] = useState("")
   const router = useRouter()
 
   const btnHandler = async (e: FormEvent<HTMLFormElement>) => {
@@ -38,25 +40,33 @@ export default function SingUpPage() {
       setPassWordError(singUpPageLoc.passwordError)
       isValid = false
     }
-
+    if (confirmPassword === "") {
+      setConfirmPasswordError(singUpPageLoc.errorRequiredPaaswordInput) // می‌تونی یه پیام مجزا بزاری
+      isValid = false
+    } else if (password !== confirmPassword) {
+      setConfirmPasswordError("رمز عبور با تکرار آن مطابقت ندارد")
+      isValid = false
+    }
     if (emailRegex.test(email) && RegexPassword.test(password)) {
-      try {
-        setLoader(true);
-        await singUpUser({ email, password });
-        router.push('/');
-      } catch (error) {
-        toast.error("ثبت نام ناموفق دوباره تلاش کنید", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          rtl: true,
-        })
-        console.error('Signup failed:', error);
-      } finally {
-        setLoader(false);
+      if (isValid) {
+        try {
+          setLoader(true);
+          await singUpUser({ email, password });
+          router.push('/');
+        } catch (error) {
+          toast.error("ثبت نام ناموفق دوباره تلاش کنید", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            rtl: true,
+          })
+          console.error('Signup failed:', error);
+        } finally {
+          setLoader(false);
+        }
       }
     }
   }
@@ -85,7 +95,8 @@ export default function SingUpPage() {
               {isSubmit && passwordError && <p className="md:text-sm sm:text-xs text-red-500">{passwordError}</p>}
             </div>
             <div className='flex flex-col w-full h-28'>
-              <Input placeholder='123456789' type='password' className={'bg-[#B6AD90] rounded-full p-2 text-[#414833] focus:outline-none'} label={singUpPageLoc.passwordLabel2} />
+              <Input onChange={((e: any) => setConfirmPassword(e.target.value)) as unknown as () => void} placeholder='123456789' type='password' className={'bg-[#B6AD90] rounded-full p-2 text-[#414833] focus:outline-none'} label={singUpPageLoc.passwordLabel2} />
+              {isSubmit && confirmPasswordError && <p className="md:text-sm sm:text-xs text-red-500">{confirmPasswordError}</p>}
             </div>
             <Button type='submit' className={'bg-white rounded-full p-2 text-2xl font-bold text-black w-40 cursor-pointer'} label={singUpPageLoc.singUpBtn} />
           </form>
