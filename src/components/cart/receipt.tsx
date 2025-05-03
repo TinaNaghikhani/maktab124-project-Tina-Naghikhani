@@ -15,10 +15,8 @@ export default function ReceiptComponent() {
     const dispatch = useDispatch()
     const router = useRouter()
 
-    // ✅ گرفتن اطلاعات از ریداکس
     const products = useSelector((state: RootState) => state.cart.books)
     const quantities = useSelector((state: RootState) => state.cart.quantities)
-
 
     const [discountCode, setDiscountCode] = useState('')
     const [extraDiscount, setExtraDiscount] = useState(0)
@@ -46,8 +44,7 @@ export default function ReceiptComponent() {
             setTotalDiscount(discount)
             setFinalPriceState(final)
 
-            // ذخیره در ریداکس
-            dispatch(setFinalPrice(final))
+            dispatch(setFinalPrice(final)) // ✅ ذخیره در Redux برای Persist
         }
     }, [products, quantities, extraDiscount, dispatch])
 
@@ -76,8 +73,12 @@ export default function ReceiptComponent() {
 
     return (
         <div className='sticky top-18 left-10 block bg-[#A4AC86] w-1/4 h-5/6 p-4 gap-2 flex flex-col items-center justify-center'>
-            <Image src={receiptPic} alt={'فاکتور خرید'} className='w-36 -mt-15' />
-            <form onSubmit={handleDiscountCode} className='w-full flex flex-col justify-center items-center border-b-2 border-dotted border-white p-4'>
+            <Image src={receiptPic} alt='فاکتور خرید' className='w-36 -mt-15' />
+
+            <form
+                onSubmit={handleDiscountCode}
+                className='w-full flex flex-col justify-center items-center border-b-2 border-dotted border-white p-4'
+            >
                 <div className='flex flex-col justify-start w-full items-start'>
                     <h3 className='text-2xl font-semibold w-32'>{receipt.disCount}</h3>
                     <Input
@@ -87,9 +88,15 @@ export default function ReceiptComponent() {
                         type='text'
                         className='w-full bg-white px-1 rounded-lg text-[#582F0E] text-xl self-center focus:outline-none'
                     />
-                    {codeApplied && <p className='text-green-200 text-sm my-3'>{receipt.disCoutSuccess}</p>}
+                    {codeApplied && (
+                        <p className='text-green-200 text-sm my-3'>{receipt.disCoutSuccess}</p>
+                    )}
                 </div>
-                <Button type='submit' className='cursor-pointer bg-[#333D29] text-white py-1 px-2  rounded-lg text-xl' label={receipt.diCountBtn} />
+                <Button
+                    type='submit'
+                    className='cursor-pointer bg-[#333D29] text-white py-1 px-2 rounded-lg text-xl'
+                    label={receipt.diCountBtn}
+                />
             </form>
 
             <div className='flex flex-col gap-4 items-center'>
@@ -109,7 +116,12 @@ export default function ReceiptComponent() {
                     <h2 className='font-semibold'>{receipt.priceToPay}</h2>
                     <h2>{Math.round(finalPrice).toLocaleString()} تومن</h2>
                 </div>
-                <Button onClick={pay} type='button' className='bg-[#333D29] text-white py-1 px-2  rounded-lg text-xl w-40 cursor-pointer' label={receipt.payBtn} />
+                <Button
+                    onClick={pay}
+                    type='button'
+                    className='bg-[#333D29] text-white py-1 px-2 rounded-lg text-xl w-40 cursor-pointer'
+                    label={receipt.payBtn}
+                />
             </div>
         </div>
     )

@@ -10,6 +10,7 @@ interface BookItem {
 }
 
 interface CartState {
+    products: any;
     books: BookItem[];
     quantities: { [key: string]: number };
     totalPrice: number;

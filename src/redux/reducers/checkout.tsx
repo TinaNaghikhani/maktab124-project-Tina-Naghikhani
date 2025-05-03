@@ -1,7 +1,10 @@
+// src/redux/reducers/checkout.ts
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface CheckoutForm {
+export interface CheckoutForm {
     name: string;
+    lName: string;
+    code: string;
     address: string;
     phone: string;
 }
@@ -10,6 +13,8 @@ const initialState: CheckoutForm = {
     name: "",
     address: "",
     phone: "",
+    lName: "",
+    code: ""
 };
 
 const checkoutSlice = createSlice({

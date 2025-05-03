@@ -4,6 +4,9 @@ import Input from '../base/input/page'
 import { checkoutPageLoc } from '../../localization/localization'
 import Button from '../base/button/page'
 import { useRouter } from 'next/navigation'
+import { useDispatch } from 'react-redux'
+import { updateCheckoutInfo } from '@/redux/reducers/checkout'
+
 export default function CheckoutComponent() {
     const phoneNumberRegex = /^09\d{9}$/;
     const codeRegex = /^\d{10}$/;
@@ -20,10 +23,14 @@ export default function CheckoutComponent() {
     const [addressErr, setAddressErr] = useState("")
 
     const router = useRouter()
+    const dispatch = useDispatch()
+
     const btnHandler = (e: React.FormEvent<HTMLButtonElement>) => {
         e.preventDefault();
         setIsSubmited(true)
         let isValid = true
+
+        // اعتبارسنجی فیلدها
         if (name === "") {
             setNameErr(checkoutPageLoc.errorName)
             isValid = false
@@ -50,10 +57,21 @@ export default function CheckoutComponent() {
             setAddressErr(checkoutPageLoc.errorAddress)
             isValid = false
         }
+
         if (isValid) {
+            // ⬇ ذخیره در ریداکس
+            dispatch(updateCheckoutInfo({
+                name: name.trim(),
+                address: address.trim(),
+                phone: phoneNumber.trim(),
+                lName:lName.trim(),
+                code:code.trim(),
+            }))
+
             router.push('/payment')
         }
     }
+
     return (
         <form onSubmit={btnHandler} className='bg-[#A68A64] p-8 grid grid-cols-2 gap-10 rounded-2xl w-5/6 text-2xl text-[#fefae0] shadow-2xl'>
             <Input error={isSubmited && nameErr && <p className="md:text-xl sm:text-xs text-white">{nameErr}</p>} onChange={((e: any) => setName(e.target.value)) as unknown as () => void} type={'text'} placeholder={''} className={'border-1 mt-2 focus:outline-none rounded-2xl shadow-xl text-[#414833] px-2 py-1 text-xl bg-[#fefae0]'} label={checkoutPageLoc.name} />
