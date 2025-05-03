@@ -1,8 +1,11 @@
 'use client'
 import React from 'react';
 import styled from 'styled-components';
-
-const BankForm = () => {
+type BankFormProps = {
+  onSuccess: () => void;
+  onCancel: () => void;
+};
+const BankForm = ({ onSuccess, onCancel }: BankFormProps) => {
   return (
     <StyledWrapper>
       <div className="modal">
@@ -24,8 +27,8 @@ const BankForm = () => {
               </div>
             </div>
             <div className='w-full flex justify-between gap-4'>
-              <button className="purchase--btn w-1/2 shadow-xl">Checkout</button>
-              <button className="purchase--btn2 bg-red-400 w-1/2 text-white rounded-xl shadow-xl">cancel</button>
+              <button onClick={(e) => { e.preventDefault(); onSuccess() }} className="purchase--btn w-1/2 shadow-xl">Checkout</button>
+              <button onClick={(e) => {e.preventDefault(); onCancel()}} className="purchase--btn2 bg-red-400 w-1/2 text-white rounded-xl shadow-xl">cancel</button>
 
             </div>
             <div className="separator">

@@ -2,7 +2,7 @@ import { ChangeEvent, ReactNode } from "react";
 
 export interface InputInterface {
   type: string;
-  placeholder: string;
+  placeholder?: string;
   className: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   value?: string;

@@ -58,7 +58,7 @@ export default function ReceiptComponent() {
             <form onSubmit={handleDiscountCode} className='w-full flex flex-col justify-center items-center border-b-2 border-dotted border-white p-4'>
                 <div className='flex flex-col justify-start w-full items-start w-full'>
                     <h3 className='text-2xl font-semibold w-32'>{receipt.disCount}</h3>
-                    <Input error={error && <p className='text-red-200 text-sm mt-1'>{error}</p>} value={discountCode} onChange={(e) => setDiscountCode(e.target.value)} type={'text'} placeholder={'CF20'} className={'w-full bg-white px-1 rounded-lg text-[#582F0E] text-xl self-center focus:outline-none'} />
+                    <Input error={error && <p className='text-red-200 text-sm mt-1'>{error}</p>} value={discountCode} onChange={(e) => setDiscountCode(e.target.value)} type={'text'} className={'w-full bg-white px-1 rounded-lg text-[#582F0E] text-xl self-center focus:outline-none'} />
                     {codeApplied && <p className='text-green-200 text-sm my-3'>{receipt.disCoutSuccess}</p>}
                 </div>
                 <Button type={'submit'} className={'cursor-pointer bg-[#333D29] text-white py-1 px-2  rounded-lg text-xl'} label={receipt.diCountBtn} />
