@@ -25,7 +25,13 @@ export default function ReceiptComponent() {
     const finalPrice = totalOriginalPrice - totalDiscount;
     const router = useRouter()
     const pay = ()=>{
-        router.push('/checkout')
+        const AccessToken = localStorage.getItem("AccessToken");
+        if (!AccessToken) {
+            router.push("/singUp")
+        }else if (AccessToken) {
+            router.push('/checkout')
+
+        }
     }
     return (
         <div className='sticky top-18 left-10 block bg-[#A4AC86] w-1/4 h-5/6 p-4 gap-2 flex flex-col items-center justify-center'>

@@ -9,10 +9,8 @@ import { useRouter } from 'next/navigation';
 
 export default function CartComponent() {
     const { products: product, setProducts: setProduct, quantities, setQuantities } = useCart();
-    // const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    // const [quantities, setQuantities] = useState({});
     const BASE_URL = "http://api.alikooshesh.ir:3000"
     const API_KEY =
         "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy"
@@ -98,11 +96,10 @@ export default function CartComponent() {
 
         fetchProducts();
     }, []);
-    if (loading) return <div className='flex flex-col gap-2 justify-center items-center p-8 w-3/4 bg-[#A68A64] text-white'>در حال بارگذاری...</div>;
+    if (loading) return <div className='flex flex-col gap-2 justify-center items-center p-8 w-3/4 bg-[#A68A64] text-white text-4xl'>در حال بارگذاری...</div>;
     if (error) return <div className='flex flex-col gap-2 justify-center items-center p-8 w-3/4 bg-[#A68A64] text-white text-4xl'>{error}
         <Button type={"button"} onClick={continiueBuying} className={'cursor-pointer py-1 px-6 text-3xl font-bold bg-[#582F0E] text-white rounded-xl mt-3'} label={'ادامه خرید'} />
     </div>;
-    if (!product) return <div className='flex flex-col gap-2 justify-center items-center p-8 w-3/4 bg-[#A68A64] text-white'>محصولی یافت نشد.</div>;
     return (
         <div className='flex flex-col gap-2 items-center p-8 w-3/4 bg-[#A68A64] text-white'>
             <Image src={cartPic} alt={'سبد خرید'} className='w-40 -mt-20' />
