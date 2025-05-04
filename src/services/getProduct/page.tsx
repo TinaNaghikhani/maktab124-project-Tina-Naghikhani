@@ -26,14 +26,14 @@ export const getProduct = async () => {
 
 export const getNewProduct = async () => {
     try {
-        const accessToken = localStorage.getItem("accessToken");
-        if (!accessToken) {
-            throw new Error("Access token is missing or expired.");
-        }
+        // const accessToken = localStorage.getItem("accessToken");
+        // if (!accessToken) {
+        //     throw new Error("Access token is missing or expired.");
+        // }
         const result = await axios.get(`${BASE_URL}/api/records/new`, {
             headers: {
                 "api_key": API_KEY,
-                "Authorization": `Bearer ${accessToken}`,
+                // "Authorization": `Bearer ${accessToken}`,
                 "Content-Type": "application/json",
             },
         });
@@ -46,14 +46,14 @@ export const getNewProduct = async () => {
 
 export const getFutureProduct = async () => {
     try {
-        const accessToken = localStorage.getItem("accessToken");
-        if (!accessToken) {
-            throw new Error("Access token is missing or expired.");
-        }
+        // const accessToken = localStorage.getItem("accessToken");
+        // if (!accessToken) {
+        //     throw new Error("Access token is missing or expired.");
+        // }
         const result = await axios.get(`${BASE_URL}/api/records/future`, {
             headers: {
                 "api_key": API_KEY,
-                "Authorization": `Bearer ${accessToken}`,
+                // "Authorization": `Bearer ${accessToken}`,
                 "Content-Type": "application/json",
             },
         });
