@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { dashboardLocalization } from '@/localization/localization';
 import { getOrder } from '@/services/getOrder/getOrder';
+import DeliverModal from '@/components/modals/deliveredModal/deliverModal';
 
 export default function OrdersTable() {
   const { orderTabel } = dashboardLocalization;
@@ -123,7 +124,9 @@ export default function OrdersTable() {
         <tbody>
           {filteredDateOrders.map((order) => (
             <tr key={order.id} className='border hover:bg-[#C2C5AA]'>
-              <td className='w-[150px] p-2'>{`${order.user.name} ${order.user.lName}`}</td>
+              <td className='w-[150px] p-2'>
+                {order.user ? `${order.user.name} ${order.user.lName}` : '---'}
+              </td>
               <td className='w-[150px] p-2'>{new Date(order.createdAt).toLocaleDateString('fa-IR')}</td>
               <td className='w-[150px] p-2'>{Number(order.totalPrice).toLocaleString()} تومن</td>
               <td className='w-[150px] p-2'>
@@ -133,6 +136,7 @@ export default function OrdersTable() {
           ))}
         </tbody>
       </table>
+      <DeliverModal/>
     </div>
   );
 }

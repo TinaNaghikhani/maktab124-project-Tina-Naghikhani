@@ -98,6 +98,16 @@ export const dashboardLocalization = {
     newest: "جدیدترین",
     placeholder: "انتخاب فیلتر",
   },
+  orderModals: {
+    cName: "نام مشتری :",
+    adress: "آدرس :",
+    phoneNumber: "شماره تماس :",
+    OrderDAte: "تاریخ ثبت سفارش : ",
+    product: "نام کتاب",
+    count: "تعداد",
+    payedPrice: "مبلغ پرداخت شده",
+    deliveryBtn:"تحویل شد",
+  },
   addModal: {
     photo: "عکس محصول",
     photoLabel: "عکس:",
