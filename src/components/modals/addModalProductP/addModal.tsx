@@ -12,6 +12,7 @@ interface addModalInterface {
 
 export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) {
   const { addModal } = dashboardLocalization;
+  const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
 
   const [formData, setFormData] = useState({
     name: '',
@@ -38,8 +39,24 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
   };
 
   const handleSubmit = () => {
+    const requiredFields = ['name', 'category', 'price', 'athur', 'pub', 'cover'];
+    const newErrors: { [key: string]: string } = {};
+
+    requiredFields.forEach(field => {
+      if (!formData[field as keyof typeof formData]?.trim()) {
+        newErrors[field] = 'این فیلد الزامی است';
+      }
+    });
+
+    if (Object.keys(newErrors).length > 0) {
+      setFormErrors(newErrors);
+      toast.error('لطفاً فیلدهای الزامی را تکمیل کنید');
+      return;
+    }
+
+    setFormErrors({});
     onAdd(formData);
-    setFormData({ 
+    setFormData({
       name: '',
       category: '',
       image: '',
@@ -58,25 +75,22 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
       discription3: '',
     });
   };
+
   const BASE_URL = "http://api.alikooshesh.ir:3000";
   const API_KEY =
     "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy";
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("File upload triggered", e.target.name, e.target.files); // دیباگ کردن
-
+    console.log("File upload triggered", e.target.name, e.target.files); 
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
       toast.error("توکن دسترسی یافت نشد");
       return;
     }
-
     const { name, files } = e.target;
     if (!files || files.length === 0) return;
-
     const file = files[0];
     const formDataFile = new FormData();
-    formDataFile.append("image", file); // API انتظار کلید "image" دارد
-
+    formDataFile.append("image", file); 
     fetch(`${BASE_URL}/api/files/upload`, {
       method: "POST",
       headers: {
@@ -92,21 +106,16 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
           toast.error("خطا در آپلود عکس (کد خطا: " + res.status + ")");
           return;
         }
-
         const contentType = res.headers.get("content-type");
         if (contentType?.includes("application/json")) {
           const data = await res.json();
-          console.log("Response data:", data); // چاپ داده‌های دریافتی
-
+          console.log("Response data:", data); 
           const formKeyMap: Record<string, string> = {
-            image: "image",       // <Input name="image" /> -> key: "image"
-            headerImg: "headerImage", // <Input name="headerImg" /> -> key: "headerImage"
-            athurPic: "athurPic",     // <Input name="athurPic" /> -> key: "athurPic"
+            image: "image",       
+            headerImg: "headerImg", 
+            athurPic: "athurPic",     
           };
-
           const formKey = formKeyMap[name] || name;
-
-          // ✅ تغییر این بخش: استفاده از `downloadLink` به جای `url`
           if (data && data.downloadLink) {
             setFormData((prev) => ({
               ...prev,
@@ -126,9 +135,6 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
       .catch((err) => {
         console.error("Upload error", err);
         toast.error("آپلود عکس با مشکل مواجه شد.");
-      })
-      .finally(() => {
-        e.target.value = ""; // پاک کردن ورودی فایل
       });
   };
   if (!isOpen) return null;
@@ -138,7 +144,7 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
       <div className="rounded-xl shadow-xl text-[#333D29] p-8 w-[900px] max-h-[90vh] overflow-y-auto bg-[#A4AC86] ">
         <button className='cursor-pointer text-red-500 font-bold mb-4' onClick={onClose}>X</button>
         <form className='grid grid-cols-3 items-center justify-center gap-6 text-xl '>
-          <Input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="نام کتاب" label="نام کتاب" className="border p-2 rounded-xl" />
+          <Input error={formErrors.name} type="text" name="name" value={formData.name} onChange={handleChange} placeholder="نام کتاب" label="نام کتاب" className="border p-2 rounded-xl" />
           <select onChange={handleChange} name="category" value={formData.category} className='h-11 mt-3 border border-[1px] p-1 rounded-xl'>
             <option value={addModal.category1}>{addModal.category1}</option>
             <option value={addModal.category2}>{addModal.category2}</option>
@@ -146,12 +152,12 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
             <option value={addModal.category4}>{addModal.category4}</option>
             <option value={addModal.category5}>{addModal.category5}</option>
           </select>
-          <Input type="text" name="cover" value={formData.cover} onChange={handleChange} placeholder="نوع جلد" label="جلد" className="border p-2 rounded-xl" />
-          <Input type="text" name="pub" value={formData.pub} onChange={handleChange} placeholder="ناشر" label="ناشر" className="border p-2 rounded-xl" />
-          <Input type="text" name="price" value={formData.price} onChange={handleChange} placeholder="قیمت" label="قیمت" className="border p-2 rounded-xl" />
-          <Input type="text" name="athur" value={formData.athur} onChange={handleChange} placeholder="نام نویسنده" label="نویسنده" className="border p-2 rounded-xl" />
+          <Input error={formErrors.cover} type="text" name="cover" value={formData.cover} onChange={handleChange} placeholder="نوع جلد" label="جلد" className="border p-2 rounded-xl" />
+          <Input error={formErrors.pub} type="text" name="pub" value={formData.pub} onChange={handleChange} placeholder="ناشر" label="ناشر" className="border p-2 rounded-xl" />
+          <Input error={formErrors.price} type="text" name="price" value={formData.price} onChange={handleChange} placeholder="قیمت" label="قیمت" className="border p-2 rounded-xl" />
+          <Input error={formErrors.athur} type="text" name="athur" value={formData.athur} onChange={handleChange} placeholder="نام نویسنده" label="نویسنده" className="border p-2 rounded-xl" />
           <div className='grid grid-cols-3 col-span-3 gap-4 text-sm'>
-            <Input type="file" name="image" accept="image/*" onChange={handleFileUpload}  label="تصویر" className="border p-2 rounded-xl" />
+            <Input type="file" name="image" accept="image/*" onChange={handleFileUpload} label="تصویر" className="border p-2 rounded-xl" />
             <Input type="file" name="headerImg" accept="image/*" onChange={handleFileUpload} label="تصویر هدر" className="border p-2 rounded-xl" />
             <Input type="file" name="athurPic" accept="image/*" onChange={handleFileUpload} label="تصویر نویسنده" className="border p-2 rounded-xl" />
           </div>

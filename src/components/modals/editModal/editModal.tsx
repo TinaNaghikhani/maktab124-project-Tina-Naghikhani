@@ -45,22 +45,20 @@ export default function EditeModall({ isOpen, onClose, onEdite, product }: Edite
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
-
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log("File upload triggered", e.target.name, e.target.files); // دیباگ کردن
+    console.log("File upload triggered", e.target.name, e.target.files);
 
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {
       toast.error("توکن دسترسی یافت نشد");
       return;
     }
-
     const { name, files } = e.target;
     if (!files || files.length === 0) return;
 
     const file = files[0];
     const formDataFile = new FormData();
-    formDataFile.append("image", file); // API انتظار کلید "image" دارد
+    formDataFile.append("image", file); 
 
     fetch(`${BASE_URL}/api/files/upload`, {
       method: "POST",
@@ -77,21 +75,16 @@ export default function EditeModall({ isOpen, onClose, onEdite, product }: Edite
           toast.error("خطا در آپلود عکس (کد خطا: " + res.status + ")");
           return;
         }
-
         const contentType = res.headers.get("content-type");
         if (contentType?.includes("application/json")) {
           const data = await res.json();
-          console.log("Response data:", data); // چاپ داده‌های دریافتی
-
+          console.log("Response data:", data); 
           const formKeyMap: Record<string, string> = {
-            image: "image",       // <Input name="image" /> -> key: "image"
-            headerImg: "headerImage", // <Input name="headerImg" /> -> key: "headerImage"
-            athurPic: "athurPic",     // <Input name="athurPic" /> -> key: "athurPic"
+            image: "image",       
+            headerImg: "headerImg",
+            athurPic: "athurPic",     
           };
-
           const formKey = formKeyMap[name] || name;
-
-          // ✅ تغییر این بخش: استفاده از `downloadLink` به جای `url`
           if (data && data.downloadLink) {
             setFormData((prev) => ({
               ...prev,
@@ -111,9 +104,6 @@ export default function EditeModall({ isOpen, onClose, onEdite, product }: Edite
       .catch((err) => {
         console.error("Upload error", err);
         toast.error("آپلود عکس با مشکل مواجه شد.");
-      })
-      .finally(() => {
-        e.target.value = ""; // پاک کردن ورودی فایل
       });
   };
   const handleSubmit = () => {

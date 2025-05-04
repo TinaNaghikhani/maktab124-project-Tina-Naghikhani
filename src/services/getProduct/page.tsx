@@ -8,7 +8,8 @@ export const getProduct = async () => {
     try {
         const accessToken = localStorage.getItem("accessToken");
         if (!accessToken) {
-            throw new Error("Access token is missing or expired.");
+            window.location.href = '/login-dashboard';
+            return;
         }
         const result = await axios.get(`${BASE_URL}/api/records/product`, {
             headers: {

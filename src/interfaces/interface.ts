@@ -2,15 +2,15 @@ import { ChangeEvent, ReactNode } from "react";
 
 export interface InputInterface {
   type: string;
-  placeholder: string;
+  placeholder?: string;
   className: string;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   value?: string;
   disabled?: boolean;
   id?: string;
   name?: string;
-  error?: string;
-  label: string;
+  error?: any;
+  label?: string;
 }
 
 export interface ButtonInterface {

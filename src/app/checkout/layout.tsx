@@ -6,7 +6,7 @@ export default function CheckoutLayout({ children }: LayoutProps) {
   return (
     <div>
       <Header/>
-      <main className='p-40'>{children}</main>      <Footer/>
+      <main className='py-20'>{children}</main>      <Footer/>
     </div>
   )
 }

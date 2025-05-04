@@ -16,19 +16,29 @@ export default function SingleProductComponent({ product }: any) {
     };
     const buyRef = createRef()
     const scrollToBuy = () => {
-        buyRef.current.scrollIntoview({ behavior: "smooth" });
+        buyRef.current.scrollIntoView({ behavior: "smooth" });
     };
 
     const router = useRouter()
     const buyHandler = () => {
-        setLoader(true)
-        router.push("/cart")
+        setLoader(true);
 
-    }
+        const savedProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+
+        if (product?.id && !savedProducts.includes(product.id)) {
+            savedProducts.push(product.id);
+        }
+
+        localStorage.setItem("cartProducts", JSON.stringify(savedProducts));
+
+        router.push("/cart");
+    };
+
+    
     return (
         <div>
             {loader && (
-                <div className="bg-gray-600 bg-opacity-5 h-screen w-full absolute inset-0 flex items-center justify-center z-50">
+                <div className="bg-gray-400 bg-opacity-5 w-full absolute inset-0 flex items-center justify-center z-50">
                     <Loader />
                 </div>
             )}

@@ -13,7 +13,7 @@ export default function OrdersTable() {
     const fetchOrders = async () => {
       try {
         const data = await getOrder();
-
+        console.log(data)
         // تبدیل مقادیر case به مقادیر استاندارد
         const transformedData = data.map((order: any) => ({
           ...order,
