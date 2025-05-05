@@ -26,6 +26,16 @@ const cartSlice = createSlice({
     name: "cart",
     initialState,
     reducers: {
+        addToCart: (state, action: PayloadAction<BookItem>) => {
+            const product = action.payload;
+            const exists = state.books.find(p => p.id === product.id);
+            if (!exists) {
+                state.books.push(product);
+                state.quantities[product.id] = 1;
+                state.totalPrice = calcTotal(state.books, state.quantities);
+            }
+        },
+
         setCartItems: (state, action: PayloadAction<BookItem[]>) => {
             state.books = action.payload;
             const initialQuantities = {};
@@ -64,6 +74,6 @@ function calcTotal(books: BookItem[], quantities: { [key: string]: number }) {
     }, 0);
 }
 
-export const { setCartItems, increaseQty, decreaseQty, removeFromCart } = cartSlice.actions;
+export const { setCartItems, increaseQty, decreaseQty, removeFromCart, addToCart } = cartSlice.actions;
 export default cartSlice.reducer;
 

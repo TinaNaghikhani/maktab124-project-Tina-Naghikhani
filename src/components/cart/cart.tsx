@@ -10,9 +10,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import {
     removeFromCart,
-    setCartItems,
     increaseQty,
     decreaseQty,
+    addToCart
 } from "@/redux/reducers/cart";
 
 export default function CartComponent() {
@@ -39,7 +39,11 @@ export default function CartComponent() {
     };
 
     const handleRemoveProduct = (id: string | number) => {
-        dispatch(removeFromCart(id));
+        const stringId = `${id}`;
+        dispatch(removeFromCart(stringId));
+        const savedIds = JSON.parse(localStorage.getItem("cartProducts") || "[]");
+        const updatedIds = savedIds.filter((itemId: string) => itemId !== stringId);
+        localStorage.setItem("cartProducts", JSON.stringify(updatedIds));
     };
 
     const getDiscountedPrice = (product: { price: number, offer: number }) => {
@@ -54,11 +58,6 @@ export default function CartComponent() {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                if (product.length > 0) {
-                    setLoading(false);
-                    return;
-                }
-
                 const productIds = JSON.parse(localStorage.getItem("cartProducts") || "[]");
                 if (!productIds.length) {
                     setError("سبد خرید شما خالی است.");
@@ -66,9 +65,7 @@ export default function CartComponent() {
                     return;
                 }
 
-                console.log('Product IDs from localStorage:', productIds); // دیباگ: بررسی IDهای موجود
-
-                const productPromises = productIds.map(async (id: string) => {
+                const fetchPromises = productIds.map(async (id: string) => {
                     try {
                         const res = await fetch(`${BASE_URL}/api/records/product/${id}`, {
                             headers: {
@@ -82,22 +79,15 @@ export default function CartComponent() {
                         }
 
                         const data = await res.json();
+                        dispatch(addToCart(data)); // 👈 افزودن به صورت جداگانه
                         return data;
                     } catch (error) {
                         console.error(`Error fetching product ${id}:`, error);
-                        return null; // برگرداندن null برای محصولاتی که با خطا مواجه شدند
+                        return null;
                     }
                 });
 
-                const fetchedProducts = (await Promise.all(productPromises)).filter(Boolean); // فیلتر کردن مقادیر null
-
-                console.log('Fetched Products:', fetchedProducts); // دیباگ: بررسی محصولات دریافتی
-
-                if (fetchedProducts.length === 0) {
-                    setError("هیچ محصولی از سرور دریافت نشد.");
-                } else {
-                    dispatch(setCartItems(fetchedProducts));
-                }
+                await Promise.all(fetchPromises);
             } catch (err: any) {
                 setError(err.message);
             } finally {
@@ -106,7 +96,7 @@ export default function CartComponent() {
         };
 
         fetchProducts();
-    }, [dispatch, product]);
+    }, [dispatch]);
 
     if (loading) {
         return (
