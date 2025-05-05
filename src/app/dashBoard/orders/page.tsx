@@ -17,14 +17,9 @@ export default function OrdersTable() {
       try {
         const data = await getOrder();
         console.log(data)
-        // تبدیل مقادیر case به مقادیر استاندارد
-        const transformedData = data.map((order: any) => ({
-          ...order,
-          case: order.case === 'تحویل شد' ? 'delivered' : 'pending',
-        }));
 
-        setOrders(transformedData);
-        setFilteredDateOrders(transformedData); // تنظیم اولیه
+        setOrders(data);
+        setFilteredDateOrders(data); // تنظیم اولیه
       } catch (error) {
         console.error('Error fetching orders:', error);
       }
@@ -37,7 +32,11 @@ export default function OrdersTable() {
   const filteredOrders =
     filter === 'all'
       ? orders
-      : orders.filter((order) => order.case === filter);
+      : orders.filter((order) =>
+        filter === 'delivered'
+          ? order.status === 'تحویل داده شد'
+          : order.status === 'در حال ارسال'
+      );
 
   useEffect(() => {
     handleFilterChange('defult'); // فیلتر تاریخ را به حالت پیش‌فرض بازنشانی کنید
@@ -111,6 +110,7 @@ export default function OrdersTable() {
                 id="filter"
                 onChange={(e) => handleFilterChange(e.target.value)}
                 className='bg-[#A4AC86] focus:outline-none'
+                defaultValue="default"
               >
                 <option value="defult" disabled selected hidden>
                   {orderTabel.placeholder}
@@ -129,10 +129,11 @@ export default function OrdersTable() {
               <td className='w-[150px] p-2'>
                 {order.user ? `${order.user.name} ${order.user.lName}` : '---'}
               </td>
+              
               <td className='w-[150px] p-2'>{new Date(order.createdAt).toLocaleDateString('fa-IR')}</td>
               <td className='w-[150px] p-2'>{Number(order.totalPrice).toLocaleString()} تومن</td>
               <td className='w-[150px] p-2 underline cursor-pointer hover:text-blue-600' onClick={() => { setSelectedOrder(order); setIsOrderModalOpen(true) }}>
-                {order.case === 'delivered' ? 'تحویل داده شده' : 'در حال ارسال'}
+                {order.status}
               </td>
             </tr>
           ))}

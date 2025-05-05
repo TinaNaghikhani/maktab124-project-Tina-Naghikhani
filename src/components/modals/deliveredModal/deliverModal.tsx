@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
 import { dashboardLocalization } from '@/localization/localization';
 import Button from '@/components/base/button/page';
-import { getOrder } from '@/services/getOrder/getOrder';
+import { getOrder, PutOrder } from '@/services/getOrder/getOrder';
 interface orderModalInterface {
     isOpen: boolean;
     onClose: () => void;
     order: any | null;
+    refetchOrders?: () => void;
 
 }
-export default function DeliverModal({ onClose, isOpen, order }: orderModalInterface) {
+export default function DeliverModal({ onClose, isOpen, order,refetchOrders }: orderModalInterface) {
     const { orderModals } = dashboardLocalization;
     if (!isOpen || !order) return null;
     useEffect(() => {
@@ -22,6 +23,19 @@ export default function DeliverModal({ onClose, isOpen, order }: orderModalInter
 
         fetchOrders();
     }, []);
+
+    const handleDelivery = async () => {
+        try {
+            await PutOrder(order.id, {
+                status: 'تحویل داده شد',
+            });
+            
+            onClose();
+
+        } catch (error) {
+            console.error("خطا در ثبت تحویل سفارش:", error);
+        }
+    };
     return (
         <div className="fixed top-0 left-0 flex items-center justify-center w-full h-screen bg-black/50 backdrop-blur-sm">
             <div className="bg-white rounded-xl shadow-xl text-black p-8 w-[400px] max-w-full text-center">
@@ -57,8 +71,10 @@ export default function DeliverModal({ onClose, isOpen, order }: orderModalInter
                         ))}
                     </tbody>
                 </table>
+                {order.status !== "تحویل داده شد" && (
+                    <Button onClick={handleDelivery} type={'button'} className={'bg-green-500 px-2 py-1 text-white fon-bold text-3xl rounded-xl cursor-pointer hover:bg-green-800'} label={orderModals.deliveryBtn} />
+                )}
 
-                <Button onClick={onClose} type={'button'} className={'bg-green-500 px-2 py-1 text-white fon-bold text-3xl rounded-xl cursor-pointer hover:bg-green-800'} label={orderModals.deliveryBtn} />
             </div>
         </div>
     )
