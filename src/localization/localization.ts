@@ -97,6 +97,7 @@ export const dashboardLocalization = {
     latest: "قدیمی ترین",
     newest: "جدیدترین",
     placeholder: "انتخاب فیلتر",
+    checkOrder:"برسی سفارش"
   },
   orderModals: {
     cName: "نام مشتری :",

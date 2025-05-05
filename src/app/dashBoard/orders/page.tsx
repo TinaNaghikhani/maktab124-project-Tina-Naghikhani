@@ -9,6 +9,8 @@ export default function OrdersTable() {
   const [orders, setOrders] = useState<any[]>([]);
   const [filter, setFilter] = useState<'delivered' | 'pending' | 'all'>('all');
   const [filteredDateOrders, setFilteredDateOrders] = useState<any[]>([]);
+  const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState<any | null>(null);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -129,14 +131,14 @@ export default function OrdersTable() {
               </td>
               <td className='w-[150px] p-2'>{new Date(order.createdAt).toLocaleDateString('fa-IR')}</td>
               <td className='w-[150px] p-2'>{Number(order.totalPrice).toLocaleString()} تومن</td>
-              <td className='w-[150px] p-2'>
+              <td className='w-[150px] p-2 underline cursor-pointer hover:text-blue-600' onClick={() => { setSelectedOrder(order); setIsOrderModalOpen(true) }}>
                 {order.case === 'delivered' ? 'تحویل داده شده' : 'در حال ارسال'}
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      <DeliverModal/>
+      <DeliverModal onClose={() => { setSelectedOrder(null); setIsOrderModalOpen(false) }} order={selectedOrder} isOpen={isOrderModalOpen} />
     </div>
   );
 }
