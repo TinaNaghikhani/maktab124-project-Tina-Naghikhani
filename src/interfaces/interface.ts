@@ -15,9 +15,9 @@ export interface InputInterface {
 
 export interface ButtonInterface {
   type: "submit" | "button" | undefined;
-  onClick?: () => void | undefined;
+  onClick?: () => Promise<void>;
   className: string;
-  label?: string | unknown;
+  label?:ReactNode
   disable?: boolean;
 }
 

@@ -26,3 +26,24 @@ export const getOrder = async () => {
 
     }
 };
+
+export const PutOrder = async (id: string, updatedData: any) => {
+    try {
+        const accessToken = localStorage.getItem("accessToken");
+        if (!accessToken) {
+            throw new Error("Access token is missing or expired.");
+        }
+
+        const result = await axios.put(`${BASE_URL}/api/records/order/${id}`, updatedData, {
+            headers: {
+                "api_key": API_KEY,
+                "Authorization": `Bearer ${accessToken}`,
+                "Content-Type": "application/json",
+            },
+        });
+        return result.data;
+    } catch (error) {
+        console.error("Error updating product:", error);
+        throw error;
+    }
+};
