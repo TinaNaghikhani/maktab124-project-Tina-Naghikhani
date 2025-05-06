@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <div className='flex flex-col min-h-screen'>
       <Header />
-      <main className="flex-grow p-8 m-10 flex justify-center items-center gap-10 flex-col">
+      <main className="flex-grow p-8 m-10 flex justify-center items-center gap-4 flex-col">
         <SwiperComponent />
         <Navbar />
         <NewProduct />

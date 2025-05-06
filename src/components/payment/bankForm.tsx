@@ -1,6 +1,7 @@
 'use client'
 import React from 'react';
 import styled from 'styled-components';
+import { bankFormLoc } from "@/localization/localization"
 type BankFormProps = {
   onSuccess: () => void;
   onCancel: () => void;
@@ -12,28 +13,28 @@ const BankForm = ({ onSuccess, onCancel }: BankFormProps) => {
         <form className="form">
           <div className="credit-card-info--form">
             <div className="input_container">
-              <label className="input_label" htmlFor="password_field">Card holder full name</label>
-              <input placeholder="Enter your full name" title="Inpit title" name="input-name" type="text" className="input_field" id="password_field" />
+              <label className="input_label" htmlFor="password_field">{bankFormLoc.fullName}</label>
+              <input placeholder={bankFormLoc.fullNamePlaceHolder} title="Inpit title" name="input-name" type="text" className="input_field" id="password_field" />
             </div>
             <div className="input_container">
-              <label className="input_label" htmlFor="password_field">Card Number</label>
+              <label className="input_label" htmlFor="password_field">{bankFormLoc.cardNumber}</label>
               <input placeholder="0000 0000 0000 0000" title="Inpit title" name="input-name" type="number" className="input_field" id="password_field" />
             </div>
             <div className="input_container">
-              <label className="input_label" htmlFor="password_field">Expiry Date / CVV</label>
+              <label className="input_label" htmlFor="password_field">{bankFormLoc.expierDate}</label>
               <div className="split">
                 <input placeholder="01/23" title="Expiry Date" name="input-name" type="text" className="input_field" id="password_field" />
                 <input placeholder="CVV" title="CVV" name="cvv" type="number" className="input_field" id="password_field" />
               </div>
             </div>
             <div className='w-full flex justify-between gap-4'>
-              <button onClick={(e) => { e.preventDefault(); onSuccess() }} className="purchase--btn w-1/2 shadow-xl">Checkout</button>
-              <button onClick={(e) => {e.preventDefault(); onCancel()}} className="purchase--btn2 bg-red-400 w-1/2 text-white rounded-xl shadow-xl">cancel</button>
+              <button onClick={(e) => { e.preventDefault(); onSuccess() }} className="purchase--btn w-1/2 shadow-xl">{bankFormLoc.checkout}</button>
+              <button onClick={(e) => { e.preventDefault(); onCancel() }} className="purchase--btn2 bg-red-400 w-1/2 text-white rounded-xl shadow-xl">{bankFormLoc.cancel}</button>
 
             </div>
             <div className="separator">
               <hr className="line" />
-              <p>or pay using e-wallet</p>
+              <p>{bankFormLoc.eWallet}</p>
               <hr className="line" />
             </div>
             <div className="payment--options">
@@ -177,6 +178,7 @@ const StyledWrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 10px;
+    font-size:32px
   }
 
   .split {

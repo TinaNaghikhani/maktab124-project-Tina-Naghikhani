@@ -197,3 +197,12 @@ export const receipt = {
   priceToPay: "مبلغ قابل پرداخت",
   payBtn: "اتمام خرید",
 };
+export const bankFormLoc={
+  fullName:"نام کامل دارنده کارت",
+  fullNamePlaceHolder:"نام خودرا وارد کنید",
+  cardNumber:"شماره کارت",
+  expierDate:"تاریخ انقضا/CVV2",
+  checkout:"پرداخت",
+  cancel:"انصراف",
+  eWallet:"پرداخت با کیف پول آنلاین"
+}

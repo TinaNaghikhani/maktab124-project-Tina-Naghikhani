@@ -8,7 +8,6 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios'
 import { RootState } from '@/redux/store'
 import { clearCheckoutInfo } from '@/redux/reducers/checkout'
-import { clearCart } from '@/redux/reducers/cart'
 import { setFinalPrice } from '@/redux/reducers/receipt'
 
 export default function Page() {

@@ -77,7 +77,7 @@ export default function SingUpPage() {
   return (
     <div className='h-screen flex justify-center items-center'>
       {loader && (
-        <div className="bg-gray-600 bg-opacity-5 h-screen w-full absolute inset-0 flex items-center justify-center  z-50">
+        <div className="fixed inset-0 bg-opacity-70 backdrop-filter backdrop-blur-sm flex items-center justify-center z-50">
           <Loader />
         </div>
       )}

@@ -39,7 +39,7 @@ export default function CategoryPage() {
         if (category) {
             setLoading(true);
             setError(null);
-            getBooksByCategory(category as string)  
+            getBooksByCategory(category as string)
                 .then((data) => {
                     setBooks(data);
                 })
@@ -50,15 +50,17 @@ export default function CategoryPage() {
                     setLoading(false);
                 });
         }
-    }, [category]);  
+    }, [category]);
 
     if (loading) {
-        
-            return (
-                <div className="bg-black opacity-50 h-screen w-full absolute inset-0 flex items-center justify-center z-10">
+
+        return (
+            (
+                <div className="fixed inset-0 bg-opacity-70 backdrop-filter backdrop-blur-sm flex items-center justify-center z-50">
                     <Loader />
                 </div>
             )
+        )
     }
     if (error) {
         return <div className='w-full h-full flex justify-center'>{error}</div>;

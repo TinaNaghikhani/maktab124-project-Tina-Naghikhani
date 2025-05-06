@@ -17,7 +17,7 @@ const categories = [
 export default function Navbar() {
     return (
         <div className="bg-[#A68A64] w-full h-18 rounded-4xl my-20">
-            <nav className="flex -mt-26">
+            <nav className="flex -mt-29">
                 {categories.map((category) => (
                     <Link key={category.name} href={`/category?category=${category.name}`}>
                         <Image src={category.image} alt={category.name} />

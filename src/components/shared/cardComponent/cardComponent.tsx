@@ -10,7 +10,6 @@ export default function CardComponent({ product }: any) {
                 <img
                     src={`${BASE_URL}${product.image}`}
                     alt={product.name}
-                    
                     className='w-full h-full object-cover rounded-3xl absolute top-0 left-0 transition-opacity duration-300 group-hover:opacity-0'
                 />
                 <div className='flex flex-col gap-3 p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-[#B6AD90] w-full h-full rounded-3xl'>
