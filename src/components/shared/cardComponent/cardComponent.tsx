@@ -21,8 +21,11 @@ export default function CardComponent({ product }: any) {
                         <hr className='w-5/6 rounded-full h-1 bg-[#7F4F24] border-0 ' />
                         <div className='flex flex-col gap-2'>
                             <div className='flex gap-10 p-2 items-around w-full'>
-                                <span className='bg-red-700 text-white font-bold text-lg rounded-3xl p-1'>{product.offer}%</span>
-                                <span className='text-2xl'>{product.price} تومان</span>
+                                {Number(product.offer) > 0 && (
+                                    <span className='bg-red-700 text-white font-bold text-lg rounded-3xl p-1'>
+                                        {product.offer}%
+                                    </span>
+                                )}                                <span className='text-2xl'>{product.price} تومان</span>
                             </div>
                             {product.offer > 0 && (
                                 <span className='self-end text-2xl -mt-2'>

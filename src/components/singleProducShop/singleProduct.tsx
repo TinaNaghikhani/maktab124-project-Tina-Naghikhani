@@ -103,11 +103,23 @@ export default function SingleProductComponent({ product }: Props) {
                                         </span>
                                     </div>
                                     <div className='w-44 flex flex-col gap-4 justify-center items-center p-2'>
-                                        <button ref={buyRef} onClick={buyHandler} className='cursor-pointer bg-[#936639] w-40 h-8 rounded-4xl text-white text-xl'>
-                                            {singlePageLoc.order}
-                                        </button>
-                                        <div className='flex gap-2 justify-between w-full'>
-                                            <span className='bg-red-700 text-white font-bold text-lg rounded-3xl p-1'>{product.offer}%</span>
+                                        {product.publish !== 'future' ? (
+                                            <button
+                                                ref={buyRef}
+                                                onClick={buyHandler}
+                                                className='cursor-pointer bg-[#936639] w-40 h-8 rounded-4xl text-white text-xl'
+                                            >
+                                                {singlePageLoc.order}
+                                            </button>
+                                        ) : (
+                                            <span className='text-xl text-red-600 font-bold'>ناموجود</span>
+                                        )}
+                                        <div className='flex gap-2 justify-around w-full'>
+                                            {Number(product.offer) > 0 && (
+                                                <span className='bg-red-700 text-white font-bold text-lg rounded-3xl p-1'>
+                                                    {product.offer}%
+                                                </span>
+                                            )}
                                             <span className='text-2xl'>{product.price} تومان</span>
                                         </div>
                                         {Number(product.offer) > 0 && (

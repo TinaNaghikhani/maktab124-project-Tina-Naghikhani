@@ -35,6 +35,7 @@ export interface EditeModallInterface {
   product: any;
 }
 export interface ProductsInterface {
+  [x: string]: string;
   id: string;
   name: string;
   price: string; 

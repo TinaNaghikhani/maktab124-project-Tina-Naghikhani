@@ -28,13 +28,14 @@ export const getProduct = async () => {
 export const getNewProduct = async () => {
     try {
 
-        const result = await axios.get(`${BASE_URL}/api/records/new`, {
+        const result = await axios.get(`${BASE_URL}/api/records/product`, {
             headers: {
                 "api_key": API_KEY,
                 "Content-Type": "application/json",
             },
         });
-        return result.data.records;
+        const newProducts = result.data.records.filter((product: any) => product.piblish === "new");
+        return newProducts;
     } catch (error) {
         console.error("Error fetching product:", error);
 
@@ -44,13 +45,14 @@ export const getNewProduct = async () => {
 export const getFutureProduct = async () => {
     try {
 
-        const result = await axios.get(`${BASE_URL}/api/records/future`, {
+        const result = await axios.get(`${BASE_URL}/api/records/product`, {
             headers: {
                 "api_key": API_KEY,
                 "Content-Type": "application/json",
             },
         });
-        return result.data.records;
+        const newProducts = result.data.records.filter((product: any) => product.publish === "future",);
+        return newProducts;
     } catch (error) {
         console.error("Error fetching product:", error);
 
