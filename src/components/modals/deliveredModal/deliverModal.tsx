@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { dashboardLocalization } from '@/localization/localization';
 import Button from '@/components/base/button/page';
 import { getOrder, PutOrder } from '@/services/getOrder/getOrder';
+import { toast } from 'react-toastify';
 interface orderModalInterface {
     isOpen: boolean;
     onClose: () => void;
@@ -29,7 +30,10 @@ export default function DeliverModal({ onClose, isOpen, order,refetchOrders }: o
             await PutOrder(order.id, {
                 status: 'تحویل داده شد',
             });
-            
+            toast.success("وضعیت سفارش با موفقیت ثبت شد ✅");
+            if (refetchOrders) {
+                await refetchOrders(); // 👈 داده‌ها رو دوباره بگیر
+            }
             onClose();
 
         } catch (error) {

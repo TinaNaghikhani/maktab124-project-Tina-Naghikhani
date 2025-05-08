@@ -25,7 +25,7 @@ export default function CheckoutComponent() {
     const router = useRouter()
     const dispatch = useDispatch()
 
-    const btnHandler = (e: React.FormEvent<HTMLButtonElement>) => {
+    const btnHandler: React.FormEventHandler<HTMLFormElement> = (e) => {
         e.preventDefault();
         setIsSubmited(true)
         let isValid = true

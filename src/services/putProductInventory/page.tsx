@@ -1,4 +1,4 @@
-import { ProductsInterface } from "@/interfaces/interface";
+import {ProductsInterface}  from "@/interfaces/interface";
 import axios from "axios";
 
 const BASE_URL = "http://api.alikooshesh.ir:3000";

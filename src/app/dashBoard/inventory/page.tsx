@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import { dashboardLocalization } from '@/localization/localization'
 import { getProduct } from '@/services/getProduct/page';
-import InventoryEditeModal from '@/components/modals/inventoryEdite/inventoruEdite';
+import InventoryEditeModal from '@/components/modals/inventoryEdite/inventoryEdite';
 import { FcSurvey } from "react-icons/fc";
 import { PutProduct } from '@/services/putProductInventory/page';
 

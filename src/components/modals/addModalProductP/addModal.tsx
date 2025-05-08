@@ -79,7 +79,7 @@ export default function AddModal({ isOpen, onClose, onAdd }: addModalInterface) 
   const BASE_URL = "http://api.alikooshesh.ir:3000";
   const API_KEY =
     "booktinaswuIVzBeQZ98DMmOEmjLenHyKzAbG5UJ4PrAHkD3gV4OnOQvlm6Siz9bKUfKzXjaMicQFeZu21VVmwiwUK5I4qoARsmpvsg5PLu3ee1OzY7XvckHXBmdbOmy";
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileUpload: React.ChangeEventHandler<HTMLInputElement> = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log("File upload triggered", e.target.name, e.target.files); 
     const accessToken = localStorage.getItem("accessToken");
     if (!accessToken) {

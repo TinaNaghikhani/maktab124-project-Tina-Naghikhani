@@ -18,8 +18,6 @@ export const getUsers = async () => {
             },
         });
         console.log(result.data.records); // بررسی ساختار داده‌ها
-
-        // بازگرداندن داده‌های دریافتی
         return result.data.records;
     } catch (error) {
         console.error("Error fetching order:", error);

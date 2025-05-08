@@ -12,19 +12,17 @@ export default function OrdersTable() {
   const [isOrderModalOpen, setIsOrderModalOpen] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<any | null>(null);
 
+
+  const fetchOrders = async () => {
+    try {
+      const data = await getOrder();
+      setOrders(data);
+      setFilteredDateOrders(data);
+    } catch (error) {
+      console.error('Error fetching orders:', error);
+    }
+  };
   useEffect(() => {
-    const fetchOrders = async () => {
-      try {
-        const data = await getOrder();
-        console.log(data)
-
-        setOrders(data);
-        setFilteredDateOrders(data); // تنظیم اولیه
-      } catch (error) {
-        console.error('Error fetching orders:', error);
-      }
-    };
-
     fetchOrders();
   }, []);
 
@@ -40,7 +38,7 @@ export default function OrdersTable() {
 
   useEffect(() => {
     handleFilterChange('defult'); // فیلتر تاریخ را به حالت پیش‌فرض بازنشانی کنید
-  }, [filter]);
+  }, [filter, orders]);
 
   const handleFilterChange = (filterValue: string) => {
     let sortedOrders;
@@ -139,7 +137,7 @@ export default function OrdersTable() {
           ))}
         </tbody>
       </table>
-      <DeliverModal onClose={() => { setSelectedOrder(null); setIsOrderModalOpen(false) }} order={selectedOrder} isOpen={isOrderModalOpen} />
+      <DeliverModal refetchOrders={fetchOrders} onClose={() => { setSelectedOrder(null); setIsOrderModalOpen(false) }} order={selectedOrder} isOpen={isOrderModalOpen} />
     </div>
   );
 }

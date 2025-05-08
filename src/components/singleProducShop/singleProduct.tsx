@@ -1,29 +1,39 @@
-'use client'
-import React, { createRef, useState } from 'react'
+'use client';
+
+import React, { useRef, useState } from 'react';
+import { ProductsInterface } from "@/interfaces/interface";
 import { singlePageLoc } from "@/localization/localization";
 import { useRouter } from 'next/navigation';
 import Loader from '../shared/loader/loader';
-export default function SingleProductComponent({ product }: any) {
-    const BASE_URL = "http://api.alikooshesh.ir:3000"
-    const [loader, setLoader] = useState(false)
-    const headerRef = createRef()
+
+interface Props {
+    product: ProductsInterface;
+}
+
+export default function SingleProductComponent({ product }: Props) {
+    const BASE_URL = "http://api.alikooshesh.ir:3000";
+    const [loader, setLoader] = useState(false);
+
+    const headerRef = useRef<HTMLImageElement | null>(null);
+    const athorRef = useRef<HTMLDivElement | null>(null);
+    const buyRef = useRef<HTMLButtonElement | null>(null);
+
     const scrollToHeader = () => {
-        headerRef.current.scrollIntoView({ behavior: "smooth" });
+        headerRef.current?.scrollIntoView({ behavior: "smooth" });
     };
-    const athorRef = createRef()
     const scrollToAthor = () => {
-        athorRef.current.scrollIntoView({ behavior: "smooth" })
+        athorRef.current?.scrollIntoView({ behavior: "smooth" });
     };
-    const buyRef = createRef()
     const scrollToBuy = () => {
-        buyRef.current.scrollIntoView({ behavior: "smooth" });
+        buyRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
-    const router = useRouter()
+    const router = useRouter();
+
     const buyHandler = () => {
         setLoader(true);
 
-        const savedProducts = JSON.parse(localStorage.getItem("cartProducts")) || [];
+        const savedProducts: string[] = JSON.parse(localStorage.getItem("cartProducts") || "[]");
 
         if (product?.id && !savedProducts.includes(product.id)) {
             savedProducts.push(product.id);
@@ -34,7 +44,6 @@ export default function SingleProductComponent({ product }: any) {
         router.push("/cart");
     };
 
-    
     return (
         <div>
             {loader && (
@@ -59,11 +68,17 @@ export default function SingleProductComponent({ product }: any) {
                                     className='w-80 h-80 rounded-3xl'
                                 />
                                 <div className='w-40 flex flex-col gap-2 justify-center items-center w-5/6 '>
-                                    <span onClick={scrollToHeader} className='text-2xl font-semibold text-[#936639] hover:text-[#A4AC86] cursor-pointer'>{singlePageLoc.header}</span>
+                                    <span onClick={scrollToHeader} className='text-2xl font-semibold text-[#936639] hover:text-[#A4AC86] cursor-pointer'>
+                                        {singlePageLoc.header}
+                                    </span>
                                     <hr className='w-32 rounded-full mx-10 h-1 bg-[#7F4F24] border-0' />
-                                    <span onClick={scrollToAthor} className='text-2xl font-semibold text-[#936639] hover:text-[#A4AC86] cursor-pointer'>{singlePageLoc.founder}</span>
+                                    <span onClick={scrollToAthor} className='text-2xl font-semibold text-[#936639] hover:text-[#A4AC86] cursor-pointer'>
+                                        {singlePageLoc.founder}
+                                    </span>
                                     <hr className='w-32 rounded-full mx-10 h-1 bg-[#7F4F24] border-0' />
-                                    <span onClick={scrollToBuy} className='text-2xl font-semibold text-[#936639] hover:text-[#A4AC86] cursor-pointer'>{singlePageLoc.buy}</span>
+                                    <span onClick={scrollToBuy} className='text-2xl font-semibold text-[#936639] hover:text-[#A4AC86] cursor-pointer'>
+                                        {singlePageLoc.buy}
+                                    </span>
                                 </div>
                             </div>
                             <div className='w-1/2 p-4 flex flex-col gap-2'>
@@ -71,21 +86,33 @@ export default function SingleProductComponent({ product }: any) {
                                 <hr className='w-full rounded-full mx-10 h-1 bg-[#7F4F24] border-0 ' />
                                 <div className='flex gap-8 justify-between items-start'>
                                     <div className='flex flex-col gap-4'>
-                                        <span className='text-[#7F4F24] text-2xl font-semibold'><span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.athur} </span>{product.athur}</span>
-                                        <span className='text-[#7F4F24] text-2xl font-semibold'><span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.pages} </span>{product.pages}</span>
-                                        <span className='text-[#7F4F24] text-2xl font-semibold'><span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.cover}</span>َ{product.cover}</span>
-                                        <span className='text-[#7F4F24] text-2xl font-semibold'><span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.name}</span>{product.name}</span>
-                                        <span className='text-[#7F4F24] text-2xl font-semibold'><span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.category}</span>{product.category} , {product.age}</span>
+                                        <span className='text-[#7F4F24] text-2xl font-semibold'>
+                                            <span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.athur} </span>{product.athur}
+                                        </span>
+                                        <span className='text-[#7F4F24] text-2xl font-semibold'>
+                                            <span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.pages} </span>{product.pages}
+                                        </span>
+                                        <span className='text-[#7F4F24] text-2xl font-semibold'>
+                                            <span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.cover}</span>َ{product.cover}
+                                        </span>
+                                        <span className='text-[#7F4F24] text-2xl font-semibold'>
+                                            <span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.name}</span>{product.name}
+                                        </span>
+                                        <span className='text-[#7F4F24] text-2xl font-semibold'>
+                                            <span className='font-bold text-3xl text-[#414833]'>{singlePageLoc.category}</span>{product.category} , {product.age}
+                                        </span>
                                     </div>
                                     <div className='w-44 flex flex-col gap-4 justify-center items-center p-2'>
-                                        <button ref={buyRef} onClick={buyHandler} className='cursor-pointer bg-[#936639] w-40 h-8 rounded-4xl text-white text-xl'>{singlePageLoc.order}</button>
+                                        <button ref={buyRef} onClick={buyHandler} className='cursor-pointer bg-[#936639] w-40 h-8 rounded-4xl text-white text-xl'>
+                                            {singlePageLoc.order}
+                                        </button>
                                         <div className='flex gap-2 justify-between w-full'>
                                             <span className='bg-red-700 text-white font-bold text-lg rounded-3xl p-1'>{product.offer}%</span>
                                             <span className='text-2xl'>{product.price} تومان</span>
                                         </div>
-                                        {product.offer > 0 && (
+                                        {Number(product.offer) > 0 && (
                                             <span className='self-end text-2xl text-green-500'>
-                                                {Math.round(product.price * (1 - product.offer / 100)).toLocaleString()} تومان
+                                                {Math.round(Number(product.price) * (1 - Number(product.offer) / 100)).toLocaleString()} تومان
                                             </span>
                                         )}
                                     </div>
@@ -110,8 +137,7 @@ export default function SingleProductComponent({ product }: any) {
                         </div>
                     </div>
                 )}
-
             </main>
         </div>
-    )
+    );
 }

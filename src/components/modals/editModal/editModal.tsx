@@ -88,7 +88,7 @@ export default function EditeModall({ isOpen, onClose, onEdite, product }: Edite
           if (data && data.downloadLink) {
             setFormData((prev) => ({
               ...prev,
-              [formKey]: data.downloadLink, // ذخیره `downloadLink` در فرم
+              [formKey]: data.downloadLink, 
             }));
             toast.success("عکس با موفقیت آپلود شد");
           } else {
