@@ -44,6 +44,12 @@ export default function CartComponent() {
         const savedIds = JSON.parse(localStorage.getItem("cartProducts") || "[]");
         const updatedIds = savedIds.filter((itemId: string) => itemId !== stringId);
         localStorage.setItem("cartProducts", JSON.stringify(updatedIds));
+        const productIds = JSON.parse(localStorage.getItem("cartProducts") || "[]");
+        if (!productIds.length) {
+            setError("سبد خرید شما خالی است.");
+            setLoading(false);
+            return;
+        }
     };
 
     const getDiscountedPrice = (product: { price: number, offer: number }) => {

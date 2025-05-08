@@ -20,6 +20,7 @@ const initialState: CartState = {
     books: [],
     quantities: {},
     totalPrice: 0,
+    products: undefined
 };
 
 const cartSlice = createSlice({
@@ -63,6 +64,10 @@ const cartSlice = createSlice({
             delete state.quantities[id];
             state.totalPrice = calcTotal(state.books, state.quantities);
         },
+        removeAllFromCart: (state) => {
+            state.books = []
+            state.quantities = {}
+        },
     },
 });
 
@@ -74,6 +79,6 @@ function calcTotal(books: BookItem[], quantities: { [key: string]: number }) {
     }, 0);
 }
 
-export const { setCartItems, increaseQty, decreaseQty, removeFromCart, addToCart } = cartSlice.actions;
+export const { setCartItems, increaseQty, decreaseQty, removeFromCart, addToCart, removeAllFromCart } = cartSlice.actions;
 export default cartSlice.reducer;
 

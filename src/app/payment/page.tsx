@@ -9,6 +9,7 @@ import axios from 'axios'
 import { RootState } from '@/redux/store'
 import { clearCheckoutInfo } from '@/redux/reducers/checkout'
 import { setFinalPrice } from '@/redux/reducers/receipt'
+import { removeAllFromCart } from '@/redux/reducers/cart'
 
 export default function Page() {
     const [paymentStatus, setPaymentStatus] = useState<null | 'success' | 'fail'>(null)
@@ -42,7 +43,6 @@ export default function Page() {
             })),
             totalPrice: receipt.finalPrice,
             status: 'در حال ارسال',         // وضعیت سفارش
-            deliveryStatus: 'processing',   // کلید برای تحویل
             createdAt: new Date().toISOString(), // زمان سفارش
         }
 
@@ -58,9 +58,15 @@ export default function Page() {
             })
 
             // پاک کردن وضعیت محلی (ریداکس و لوکال‌استوریج)
-            dispatch(clearCheckoutInfo())
-            dispatch(setFinalPrice(0))
+            dispatch(clearCheckoutInfo()) // فاکتور
+            dispatch(setFinalPrice(0)) // فاکتور
+            dispatch(removeAllFromCart()) // سبد خرید
+
+            // حذف سبد خرید از حافظه محلی (Redux Persist)
             localStorage.removeItem('cartProducts')
+
+            // حذف رسید از حافظه محلی (Redux Persist)
+            localStorage.removeItem('receipt')
 
             setPaymentStatus('success')
         } catch (error) {
